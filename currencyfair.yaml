@@ -299,6 +299,10 @@ paths:
       tags:
         - Authentication
       operationId: oauth
+      security:
+        - api_key: []
+      parameters:
+        - $ref: "#/components/parameters/ApiKeyHeaderParam"
       requestBody:
         description: The form values for authentication.
         content:
@@ -338,6 +342,15 @@ paths:
                     $ref: "resources/examples/oauth/oAuthResponse.json"
         '401':
           $ref: "#/components/responses/Unauthorized"
+      x-amazon-apigateway-integration:
+        x-amazon-apigateway-auth: NONE
+        httpMethod: "POST"
+        uri: "https://${stageVariables.url}/oauth"
+        passthroughBehavior: "when_no_match"
+        timeoutInMillis: 29000
+        type: "http"
+        requestParameters:
+          integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
   "/whoami":
     get:
       summary: Who Am I
