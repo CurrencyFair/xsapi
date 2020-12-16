@@ -11,3 +11,5 @@ or
 yarn install
 yarn start
 ```
+
+CurrencyFair's latest XSAPI documentation is available here: https://api-reference.currencyfair.com/
