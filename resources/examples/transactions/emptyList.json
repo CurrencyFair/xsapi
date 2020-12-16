@@ -1,0 +1,30 @@
+{
+    "balances": [
+        {
+            "currencyCode": "EUR",
+            "openingBalance": {
+                "amount": 0,
+                "scale": 2
+            },
+            "closingBalance": {
+                "amount": 0,
+                "scale": 2
+            },
+            "totalCredits": {
+                "amount": 0,
+                "scale": 2
+            },
+            "totalDebits": {
+                "amount": 0,
+                "scale": 2
+            }
+        }
+    ],
+    "_embedded": {
+        "transactions": []
+    },
+    "page_count": 0,
+    "page_size": 25,
+    "total_items": 0,
+    "page": 0
+}

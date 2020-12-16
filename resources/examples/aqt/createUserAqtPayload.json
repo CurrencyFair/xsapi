@@ -1,0 +1,44 @@
+{
+  "order": {
+    "quote": {
+      "currencyFrom": "EUR",
+      "currencyTo": "USD",
+      "type": "SELL",
+      "amountInfo": {
+        "sell": {
+          "amount": 100000
+        },
+        "buy": {
+          "amount": 117006
+        }
+      }
+    },
+    "rateInfo": {
+      "standard": {
+        "rate": 1.1701,
+        "scale": 4
+      },
+      "inverse": {
+        "rate": 0.854628,
+        "scale": 4
+      }
+    }
+  },
+  "transfer": {
+    "account": {
+      "accountId": 1022
+    },
+    "transferType": {
+      "id": 1
+    },
+    "purpose": {
+      "id": 11
+    },
+    "customTransferPurpose": "Custom transfer purpose",
+    "references": {
+      "referenceField1": "Sample recipient reference"
+    },
+    "beneficiaryEmail": "beneficiary@example.com",
+    "beneficiaryEmailSend": true
+  }
+}

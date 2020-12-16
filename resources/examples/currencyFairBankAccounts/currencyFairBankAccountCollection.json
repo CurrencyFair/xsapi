@@ -1,0 +1,107 @@
+{
+  "_embedded": {
+    "currencyfair_accounts": [
+      {
+        "accountId": "270750",
+        "accountName": "CurrencyFair Ltd",
+        "bankName": "AIB",
+        "bankAddress": [
+          "Bankcentre branch, Serpentine Avenue",
+          "Ballsbridge",
+          "Dublin 4",
+          "Ireland"
+        ],
+        "accountInformation": [
+          {
+            "name": "accountNumber",
+            "label": "Account No",
+            "value": "21301283"
+          },
+          {
+            "name": "iban",
+            "label": "IBAN",
+            "value": "GB47BARC20000052375833"
+          },
+          {
+            "name": "bank_code",
+            "label": "Sort code",
+            "value": "931365"
+          },
+          {
+            "name": "swift",
+            "label": "SWIFT/BIC",
+            "value": "IE25HDRD73367504201086"
+          }
+        ],
+        "message": "Euro standard transfers are made via the SEPA system within Europe.",
+        "reference": "CF4182220",
+        "_embedded": {
+          "currency": {
+            "currencyCode": "EUR",
+            "description": "Euro",
+            "minDeposit": 8,
+            "maxDeposit": 10000000,
+            "minimumSellAmount": 5,
+            "roundingScale": 2
+          },
+          "fields": [
+            {
+              "name": "info-message",
+              "type": "message",
+              "label": "Euro standard transfers are made via the SEPA system within Europe.",
+              "required": null
+            }
+          ]
+        }
+      },
+      {
+        "accountId": "287644",
+        "accountName": "WorldPay AP Limited",
+        "bankName": "Automation Barclays ABS Bank GBP",
+        "bankAddress": [
+          "London",
+          "GB"
+        ],
+        "accountInformation": [
+          {
+            "name": "accountNumber",
+            "label": "Account No",
+            "value": "76509822"
+          },
+          {
+            "name": "bank_code",
+            "label": "Sort code (BACS, Faster Payments)",
+            "value": "20-36-47"
+          },
+          {
+            "name": "iban",
+            "label": "IBAN",
+            "value": "GB54BARC20301948530722"
+          }
+        ],
+        "message": "",
+        "reference": "CFIGB4182220",
+        "_embedded": {
+          "currency": {
+            "currencyCode": "GBP",
+            "description": "Pound Sterling",
+            "minDeposit": 7,
+            "maxDeposit": 10000000,
+            "minimumSellAmount": 5,
+            "roundingScale": 2
+          },
+          "fields": [
+            {
+              "name": "cop-info-message",
+              "type": "message",
+              "label": "To successfully process your transaction, the Name of Account holder provided to your bank must exactly match the Account Name below.",
+              "required": null
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "total_items": 2
+}
+

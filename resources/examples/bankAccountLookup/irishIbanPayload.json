@@ -1,0 +1,12 @@
+{
+  "accountInformation": [
+    {
+      "name": "iban",
+      "label": "IBAN",
+      "value": "IE29AIBK93115212345678"
+    }
+  ],
+  "country": {
+    "id": 15
+  }
+}

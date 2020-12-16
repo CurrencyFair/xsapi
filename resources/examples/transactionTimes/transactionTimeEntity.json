@@ -1,0 +1,20 @@
+{
+  "estimatedArrivalDate": {
+    "intervalText": "Wednesday",
+    "day": "28",
+    "ordinal": "th",
+    "month": "10",
+    "monthText": "October",
+    "year": "2020"
+  },
+  "_embedded": {
+    "currency": {
+      "currencyCode": "EUR",
+      "description": "Euro",
+      "minDeposit": 8,
+      "maxDeposit": 10000000,
+      "minimumSellAmount": 5,
+      "roundingScale": 2
+    }
+  }
+}

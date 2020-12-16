@@ -1,0 +1,25 @@
+{
+  "_embedded": {
+    "type": {
+      "id": 1,
+      "label": "Serial"
+    },
+    "steps": [
+      {
+        "id": 1,
+        "label": "Transaction Details",
+        "type": "CALCULATOR"
+      },
+      {
+        "id": 2,
+        "label": "Recipient Details",
+        "type": "RECIPIENT_DETAILS"
+      },
+      {
+        "id": 3,
+        "label": "Send to CurrencyFair",
+        "type": "MAKE_PAYMENT"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "_embedded": {
+        "approvers": [
+            {
+                "customerId": "578449",
+                "firstname": "John",
+                "lastname": "Smith"
+            },
+            {
+                "customerId": "578460",
+                "firstname": "Jane",
+                "lastname": "Doe"
+            }
+        ]
+    },
+    "total_items": 2
+}

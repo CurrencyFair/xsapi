@@ -1,0 +1,259 @@
+{
+    "id": "107025014",
+    "created": "2020-10-19T14:02:13+01:00",
+    "createdBy": null,
+    "cancelledBy": null,
+    "aqt": null,
+    "references": {
+        "referenceField1": "JohnDoe12345",
+        "referenceField2": null
+    },
+    "amountInfo": {
+        "amount": -2345.67,
+        "scale": 2
+    },
+    "feeInfo": {
+        "amount": -2.5,
+        "scale": 2,
+        "currency": {
+            "currencyCode": "GBP"
+        }
+    },
+    "statusInfo": {
+        "status": 2,
+        "message": "Confirmed"
+    },
+    "customTransferPurpose": "Just testing something",
+    "estimatedArrivalDate": {
+        "intervalText": "Tuesday",
+        "day": "20",
+        "ordinal": "th",
+        "month": "10",
+        "monthText": "October",
+        "year": "2020"
+    },
+    "_embedded": {
+        "account": {
+            "accountId": 1022220,
+            "accountName": "test",
+            "bankName": "BANK OF AMERICA MERRILL LYNCH INTERNATIONAL DAC SE",
+            "bankAddress": [
+                "TORRE SERRANO FLOOR 8 MADRID"
+            ],
+            "accountInformation": [
+                {
+                    "name": "iban",
+                    "label": "IBAN",
+                    "value": "ES2714850001040035904016"
+                },
+                {
+                    "name": "swift",
+                    "label": "SWIFT\/BIC",
+                    "value": "BOFAES2XXXX"
+                }
+            ],
+            "additionalInformation": null,
+            "createdByCustomer": {
+                "id": "578373",
+                "firstname": "Kamil",
+                "surname": "Tunkiewicz"
+            },
+            "beneficiaryAddress": null,
+            "beneficiaryCity": null,
+            "beneficiaryState": null,
+            "beneficiaryPostCode": null,
+            "beneficiaryCountryOfResidence": null,
+            "beneficiaryEmail": "jose.garcia@example.com",
+            "beneficiaryEmailSend": true,
+            "accountNickname": null,
+            "accountNumber": null,
+            "_embedded": {
+                "currency": {
+                    "currencyCode": "EUR",
+                    "description": "Euro",
+                    "minDeposit": 8,
+                    "maxDeposit": 10000000,
+                    "minimumSellAmount": 5,
+                    "marketplaceEnabled": true,
+                    "aqtOnly": false,
+                    "buyOnly": false,
+                    "acceptDeposits": true,
+                    "roundingScale": 2,
+                    "targetCurrencies": [
+                        {
+                            "currencyCode": "DKK"
+                        },
+                        {
+                            "currencyCode": "AED"
+                        },
+                        {
+                            "currencyCode": "HUF"
+                        },
+                        {
+                            "currencyCode": "PHP"
+                        },
+                        {
+                            "currencyCode": "USD"
+                        },
+                        {
+                            "currencyCode": "ZAR"
+                        },
+                        {
+                            "currencyCode": "PLN"
+                        },
+                        {
+                            "currencyCode": "CZK"
+                        },
+                        {
+                            "currencyCode": "IDR"
+                        },
+                        {
+                            "currencyCode": "AUD"
+                        },
+                        {
+                            "currencyCode": "NOK"
+                        },
+                        {
+                            "currencyCode": "GBP"
+                        },
+                        {
+                            "currencyCode": "INR"
+                        },
+                        {
+                            "currencyCode": "ILS"
+                        },
+                        {
+                            "currencyCode": "CAD"
+                        },
+                        {
+                            "currencyCode": "HKD"
+                        },
+                        {
+                            "currencyCode": "NZD"
+                        },
+                        {
+                            "currencyCode": "SEK"
+                        },
+                        {
+                            "currencyCode": "THB"
+                        },
+                        {
+                            "currencyCode": "SGD"
+                        },
+                        {
+                            "currencyCode": "CHF"
+                        }
+                    ]
+                },
+                "country": {
+                    "id": "29",
+                    "countryCode": "ES",
+                    "name": "Spain",
+                    "dialCode": "34",
+                    "allowsRegistration": true,
+                    "registrationMessage": null,
+                    "_embedded": {
+                        "defaultCurrency": {
+                            "currencyCode": "EUR",
+                            "description": "Euro",
+                            "minDeposit": 8,
+                            "maxDeposit": 10000000,
+                            "minimumSellAmount": 5,
+                            "marketplaceEnabled": true,
+                            "aqtOnly": false,
+                            "buyOnly": false,
+                            "acceptDeposits": true,
+                            "roundingScale": 2,
+                            "targetCurrencies": [
+                                {
+                                    "currencyCode": "DKK"
+                                },
+                                {
+                                    "currencyCode": "AED"
+                                },
+                                {
+                                    "currencyCode": "HUF"
+                                },
+                                {
+                                    "currencyCode": "PHP"
+                                },
+                                {
+                                    "currencyCode": "USD"
+                                },
+                                {
+                                    "currencyCode": "ZAR"
+                                },
+                                {
+                                    "currencyCode": "PLN"
+                                },
+                                {
+                                    "currencyCode": "CZK"
+                                },
+                                {
+                                    "currencyCode": "IDR"
+                                },
+                                {
+                                    "currencyCode": "AUD"
+                                },
+                                {
+                                    "currencyCode": "NOK"
+                                },
+                                {
+                                    "currencyCode": "GBP"
+                                },
+                                {
+                                    "currencyCode": "INR"
+                                },
+                                {
+                                    "currencyCode": "ILS"
+                                },
+                                {
+                                    "currencyCode": "CAD"
+                                },
+                                {
+                                    "currencyCode": "HKD"
+                                },
+                                {
+                                    "currencyCode": "NZD"
+                                },
+                                {
+                                    "currencyCode": "SEK"
+                                },
+                                {
+                                    "currencyCode": "THB"
+                                },
+                                {
+                                    "currencyCode": "SGD"
+                                },
+                                {
+                                    "currencyCode": "CHF"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "transferType": {
+            "id": 1,
+            "label": "Standard",
+        },
+        "purpose": {
+            "id": "11",
+            "label": "Other"
+        },
+        "currency": {
+            "currencyCode": "EUR",
+            "description": "Euro",
+            "minDeposit": 8,
+            "maxDeposit": 10000000,
+            "minimumSellAmount": 5,
+            "marketplaceEnabled": true,
+            "aqtOnly": false,
+            "buyOnly": false,
+            "acceptDeposits": true,
+            "roundingScale": null,
+            "targetCurrencies": null
+        }
+    }
+}

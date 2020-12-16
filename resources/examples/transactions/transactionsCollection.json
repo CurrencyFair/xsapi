@@ -1,0 +1,87 @@
+{
+    "balances": [
+        {
+            "currencyCode": "EUR",
+            "openingBalance": {
+                "amount": 10000000,
+                "scale": 2
+            },
+            "closingBalance": {
+                "amount": 9998000,
+                "scale": 2
+            },
+            "totalCredits": {
+                "amount": 0,
+                "scale": 2
+            },
+            "totalDebits": {
+                "amount": -2000,
+                "scale": 2
+            }
+        }
+    ],
+    "_embedded": {
+        "transactions": [
+            {
+                "id": 34304415,
+                "timestamp": "2020-05-11T16:53:53+01:00",
+                "type": "TRADE_SELL",
+                "currencyCode": "EUR",
+                "amount": {
+                    "amount": -1000,
+                    "scale": 2
+                },
+                "balance": {
+                    "amount": 9999000,
+                    "scale": 2
+                },
+                "summary": {
+                    "raw": "Sell - {currencyFrom} to {currencyTo} @ {rate}",
+                    "formatted": "Sell - EUR to GBP @ 0.8717"
+                },
+                "description": {
+                    "raw": "Sell - {currencyFrom} to {currencyTo} @ {rate}",
+                    "formatted": "Sell - EUR to GBP @ 0.8717"
+                },
+                "details": {
+                    "rate": "0.8717",
+                    "currencyTo": "GBP",
+                    "rateScale": "4",
+                    "currencyFrom": "EUR"
+                }
+            },
+            {
+                "id": 34304418,
+                "timestamp": "2020-05-11T16:54:41+01:00",
+                "type": "TRADE_SELL",
+                "currencyCode": "EUR",
+                "amount": {
+                    "amount": -1000,
+                    "scale": 2
+                },
+                "balance": {
+                    "amount": 9998000,
+                    "scale": 2
+                },
+                "summary": {
+                    "raw": "Sell - {currencyFrom} to {currencyTo} @ {rate}",
+                    "formatted": "Sell - EUR to AUD @ 1.6580"
+                },
+                "description": {
+                    "raw": "Sell - {currencyFrom} to {currencyTo} @ {rate}",
+                    "formatted": "Sell - EUR to AUD @ 1.6580"
+                },
+                "details": {
+                    "rate": "1.658",
+                    "currencyTo": "AUD",
+                    "rateScale": "4",
+                    "currencyFrom": "EUR"
+                }
+            }
+        ]
+    },
+    "page_count": 1,
+    "page_size": 25,
+    "total_items": 2,
+    "page": 1
+}

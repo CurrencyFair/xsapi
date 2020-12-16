@@ -1,0 +1,10 @@
+{
+    "id": 578225,
+    "customerCode": "CF5578225",
+    "firstname": "John",
+    "surname": "Doe",
+    "email": "john.doe@example.com",
+    "isTrial": false,
+    "isActive": true,
+    "signupDate": "2020-03-31 13:41:24"
+}

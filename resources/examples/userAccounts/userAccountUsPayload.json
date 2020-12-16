@@ -1,0 +1,93 @@
+{
+  "accountInformation": [
+    {
+      "label": "Bank Name",
+      "name": "bankName",
+      "precheck": false,
+      "value": "Wells Fargo Bank, National Association"
+    },
+    {
+      "label": "Bank Address",
+      "name": "bankAddress",
+      "precheck": false,
+      "value": "1502 HWY 33 SOUTH CLOQUET"
+    },
+    {
+      "label": "Account Number",
+      "name": "accountNumber",
+      "precheck": true,
+      "validation": [
+        null
+      ],
+      "value": "4000124974"
+    },
+    {
+      "label": "ABA Number",
+      "name": "abaNumber",
+      "precheck": true,
+      "type": "text",
+      "validation": [
+        null,
+        null
+      ],
+      "value": "121000248"
+    },
+    {
+      "label": "Address of Account Holder",
+      "name": "beneficiaryAddress",
+      "precheck": true,
+      "type": "text",
+      "value": "23 Cherry Blossom St, Rye, New York, 10002"
+    },
+    {
+      "label": "City / Town",
+      "name": "beneficiaryCity",
+      "precheck": true,
+      "type": "text",
+      "value": "Rye"
+    },
+    {
+      "label": "State / County",
+      "name": "beneficiaryState",
+      "precheck": true,
+      "type": "text",
+      "value": "NY"
+    },
+    {
+      "label": "Post / Zip Code",
+      "name": "beneficiaryPostCode",
+      "precheck": true,
+      "type": "text",
+      "value": "10002"
+    },
+    {
+      "label": "Country of Residence",
+      "name": "beneficiaryCountryOfResidence",
+      "precheck": true,
+      "type": "listNonAdditiveNoIDs",
+      "value": "15"
+    }
+  ],
+  "accountName": "Joe Bloggsf",
+  "additionalInformation": "",
+  "bankAddress": [
+    "1502",
+    "HWY",
+    "33",
+    "SOUTH CLOQUET"
+  ],
+  "bankName": "Wells Fargo Bank, National Association",
+  "beneficiaryVerification": [],
+  "country": {
+    "allowsRegistration": false,
+    "countryCode": "US",
+    "dialCode": "1",
+    "id": "1",
+    "name": "United States"
+  },
+  "currency": {
+    "currencyCode": "USD",
+    "description": "United States Dollar",
+    "minimumSellAmount": 5
+  }
+}

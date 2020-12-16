@@ -1,0 +1,28 @@
+{
+  "bankName": "COMMERZBANK AG",
+  "accountName": "Joe Bloggs",
+  "country": {
+    "id": 95
+  },
+  "accountInformation": [
+    {
+      "name": "iban",
+      "label": "IBAN",
+      "value": "EE382200221020145685"
+    },
+    {
+      "name": "swift",
+      "label": "SWIFT",
+      "value": "COBADEFFXXX"
+    }
+  ],
+  "currency": {
+    "currencyCode": "EUR"
+  },
+  "bankAddress": [
+    "Prinzregentenstraße 3",
+    "97688",
+    "Bad Kissingen",
+    "Germany"
+  ]
+}

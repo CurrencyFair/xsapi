@@ -1,0 +1,192 @@
+{
+    "id": "107024380",
+    "created": "2020-10-14T15:06:39+01:00",
+    "createdBy": {
+        "id": "43654",
+        "firstname": "John",
+        "surname": "Doe"
+    },
+    "cancelledBy": {
+        "id": "43523",
+        "firstname": "Jane",
+        "surname": "Smith"
+    },
+    "aqt": null,
+    "references": {
+        "referenceField1": null,
+        "referenceField2": null
+    },
+    "amountInfo": {
+        "amount": -12.34,
+        "scale": 2
+    },
+    "feeInfo": {
+        "amount": -2.5,
+        "scale": 2,
+        "currency": {
+            "currencyCode": "GBP"
+        }
+    },
+    "statusInfo": {
+        "status": 3,
+        "message": "Cancelled"
+    },
+    "customTransferPurpose": "Sending money to family",
+    "estimatedArrivalDate": {
+        "intervalText": "Today",
+        "day": "14",
+        "ordinal": "th",
+        "month": "10",
+        "monthText": "October",
+        "year": "2020"
+    },
+    "_embedded": {
+        "account": {
+            "accountId": 1016592,
+            "accountName": "Joe Bloggs - Ireland 222test",
+            "bankName": "Bank of Ireland",
+            "bankAddress": [
+                "15 Main Street",
+                "Dublin",
+                "Dublin 5",
+                "Ireland"
+            ],
+            "accountInformation": [
+                {
+                    "name": "accountNumber",
+                    "label": "Account No",
+                    "value": "IE29AIBK93115212345678"
+                },
+                {
+                    "name": "swift",
+                    "label": "SWIFT/BIC",
+                    "value": "AIBKIE2DXXX"
+                }
+            ],
+            "additionalInformation": null,
+            "createdByCustomer": {
+                "id": "578225",
+                "firstname": "Smoke",
+                "surname": "Test"
+            },
+            "beneficiaryAddress": null,
+            "beneficiaryCity": null,
+            "beneficiaryState": null,
+            "beneficiaryPostCode": null,
+            "beneficiaryCountryOfResidence": null,
+            "beneficiaryEmail": null,
+            "beneficiaryEmailSend": null,
+            "accountNickname": null,
+            "accountNumber": "IE29AIBK93115212345678",
+            "_embedded": {
+                "currency": {
+                    "currencyCode": "GBP",
+                    "description": "Pound Sterling",
+                    "minDeposit": 7,
+                    "maxDeposit": 10000000,
+                    "minimumSellAmount": 5,
+                    "marketplaceEnabled": true,
+                    "aqtOnly": false,
+                    "buyOnly": false,
+                    "acceptDeposits": true,
+                    "roundingScale": 2,
+                    "targetCurrencies": [
+                        {
+                            "currencyCode": "USD"
+                        },
+                        {
+                            "currencyCode": "PHP"
+                        },
+                        {
+                            "currencyCode": "EUR"
+                        },
+                        {
+                            "currencyCode": "PLN"
+                        },
+                        {
+                            "currencyCode": "ZAR"
+                        },
+                        {
+                            "currencyCode": "NOK"
+                        },
+                        {
+                            "currencyCode": "CZK"
+                        },
+                        {
+                            "currencyCode": "IDR"
+                        },
+                        {
+                            "currencyCode": "AUD"
+                        },
+                        {
+                            "currencyCode": "CAD"
+                        },
+                        {
+                            "currencyCode": "HKD"
+                        },
+                        {
+                            "currencyCode": "ILS"
+                        },
+                        {
+                            "currencyCode": "NZD"
+                        },
+                        {
+                            "currencyCode": "INR"
+                        },
+                        {
+                            "currencyCode": "SEK"
+                        },
+                        {
+                            "currencyCode": "SGD"
+                        },
+                        {
+                            "currencyCode": "THB"
+                        },
+                        {
+                            "currencyCode": "DKK"
+                        },
+                        {
+                            "currencyCode": "AED"
+                        },
+                        {
+                            "currencyCode": "CHF"
+                        },
+                        {
+                            "currencyCode": "HUF"
+                        }
+                    ]
+                },
+                "country": {
+                    "id": "37",
+                    "countryCode": "AS",
+                    "name": "American Samoa",
+                    "dialCode": "684",
+                    "allowsRegistration": false,
+                    "registrationMessage": null,
+                    "defaultCurrency": {}
+                }
+            }
+        },
+        "transferType": {
+            "id": 1,
+            "label": "Standard"
+        },
+        "purpose": {
+            "id": "11",
+            "label": "Other"
+        },
+        "currency": {
+            "currencyCode": "GBP",
+            "description": "Pound Sterling",
+            "minDeposit": 7,
+            "maxDeposit": 10000000,
+            "minimumSellAmount": 5,
+            "marketplaceEnabled": true,
+            "aqtOnly": false,
+            "buyOnly": false,
+            "acceptDeposits": true,
+            "roundingScale": null,
+            "targetCurrencies": null
+        }
+    }
+}

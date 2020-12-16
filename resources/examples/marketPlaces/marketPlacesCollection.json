@@ -1,0 +1,387 @@
+{
+  "_embedded": {
+    "marketplaces": [
+      {
+        "currencyFrom": "NZD",
+        "currencyTo": "AED",
+        "incrementInfo": {
+          "increment": 0.0002,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "OPEN",
+        "marketStatusMetaData": {
+          "subStatus": null,
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": null
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "NZD",
+        "currencyTo": "AUD",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "OPEN",
+        "marketStatusMetaData": {
+          "subStatus": null,
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": null
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "NZD",
+        "currencyTo": "CAD",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "OPEN",
+        "marketStatusMetaData": {
+          "subStatus": null,
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": null
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "CZK",
+        "currencyTo": "INR",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 100,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_EXCHANGE_NOT_AVAILABLE",
+          "nextOpening": "2020-11-26T09:00:00+05:30",
+          "lastClosing": "2020-11-25T13:30:00+05:30",
+          "message": "This INR exchange market is currently closed. The INR market is open between {lastClosingTime} and {nextOpeningTime} ({timeZoneInfo})."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "THB",
+        "currencyTo": "INR",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 100,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_EXCHANGE_NOT_AVAILABLE",
+          "nextOpening": "2020-11-26T09:00:00+05:30",
+          "lastClosing": "2020-11-25T13:30:00+05:30",
+          "message": "This INR exchange market is currently closed. The INR market is open between {lastClosingTime} and {nextOpeningTime} ({timeZoneInfo})."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "EUR",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.01,
+          "scale": 2
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "OPEN",
+        "marketStatusMetaData": {
+          "subStatus": null,
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": null
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "GBP",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.01,
+          "scale": 2
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "HKD",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.001,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "HUF",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 2.0e-5,
+          "scale": 5
+        },
+        "limitsInfo": {
+          "minimumAmount": 1000,
+          "maximumAmount": 1000000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "ILS",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.001,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "INR",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 100,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "NOK",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.001,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 100,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "NZD",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.005,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "PLN",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.002,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "SEK",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.001,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 50,
+          "maximumAmount": 100000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "SGD",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.005,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "THB",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.0001,
+          "scale": 4
+        },
+        "limitsInfo": {
+          "minimumAmount": 100,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "USD",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.005,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 500000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      },
+      {
+        "currencyFrom": "ZAR",
+        "currencyTo": "PHP",
+        "incrementInfo": {
+          "increment": 0.001,
+          "scale": 3
+        },
+        "limitsInfo": {
+          "minimumAmount": 5,
+          "maximumAmount": 10000000
+        },
+        "status": "SUSPENDED",
+        "marketStatusMetaData": {
+          "subStatus": "MARKET_SPECIFIC_CLOSURE",
+          "nextOpening": null,
+          "lastClosing": null,
+          "message": "This exchange market is currently closed."
+        },
+        "items": null
+      }
+    ]
+  },
+  "total_items": 18
+}

@@ -1,0 +1,15 @@
+{
+    "_embedded": {
+        "transferTypes": [
+            {
+                "id": 1,
+                "label": "Standard"
+            },
+            {
+                "id": 2,
+                "label": "Priority"
+            }
+        ]
+    },
+    "total_items": 2
+}

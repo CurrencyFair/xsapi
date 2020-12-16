@@ -1,0 +1,147 @@
+{
+    "_embedded": {
+        "freeTransfersDetail": [
+            {
+                "id": 955460,
+                "customerId": 12345,
+                "startDate": {
+                    "date": "2020-12-30 00:00:00.000000",
+                    "timezone_type": 3,
+                    "timezone": "Europe/Dublin"
+                },
+                "endDate": null,
+                "_embedded": {
+                    "transferType": {
+                        "id": 1,
+                        "label": "Standard"
+                    },
+                    "transfer": {
+                        "id": "112125156",
+                        "created": "2020-10-13T11:02:42+01:00",
+                        "createdBy": {
+                            "id": "12345",
+                            "firstname": "John",
+                            "surname": "Smith"
+                        },
+                        "cancelledBy": null,
+                        "aqt": null,
+                        "references": {
+                            "referenceField1": "Payment for Car",
+                            "referenceField2": null
+                        },
+                        "amountInfo": {
+                            "amount": -700,
+                            "scale": 2
+                        },
+                        "feeInfo": {
+                            "amount": 0,
+                            "scale": 2,
+                            "currency": {
+                                "currencyCode": "GBP"
+                            }
+                        },
+                        "statusInfo": {
+                            "status": 10,
+                            "message": "Returned"
+                        },
+                        "customTransferPurpose": "Payment for Car",
+                        "estimatedArrivalDate": null,
+                        "_embedded": {
+                            "account": {
+                                "accountId": 1101029,
+                                "accountName": "Bob Tester",
+                                "bankName": "Bank of Ireland",
+                                "bankAddress": [
+                                    "15 Main Street",
+                                    "Dublin",
+                                    "Dublin 5",
+                                    "Ireland"
+                                ],
+                                "accountInformation": [
+                                    {
+                                        "name": "accountNumber",
+                                        "label": "Account No",
+                                        "value": "IE29AIBK93115212345678"
+                                    },
+                                    {
+                                        "name": "swift",
+                                        "label": "SWIFT/BIC",
+                                        "value": "AIBKIE2DXXX"
+                                    }
+                                ],
+                                "additionalInformation": null,
+                                "createdByCustomer": {
+                                    "id": "12345",
+                                    "firstname": "John",
+                                    "surname": "Smith"
+                                },
+                                "beneficiaryAddress": null,
+                                "beneficiaryCity": null,
+                                "beneficiaryState": null,
+                                "beneficiaryPostCode": null,
+                                "beneficiaryCountryOfResidence": null,
+                                "beneficiaryEmail": "person@example.com",
+                                "beneficiaryEmailSend": true,
+                                "accountNickname": null,
+                                "accountNumber": "IE29AIBK93115212345678",
+                                "_embedded": {
+                                    "currency": {
+                                        "currencyCode": "GBP",
+                                        "description": "Pound Sterling",
+                                        "minDeposit": 7,
+                                        "maxDeposit": 10000000,
+                                        "minimumSellAmount": 5,
+                                        "marketplaceEnabled": true,
+                                        "aqtOnly": false,
+                                        "buyOnly": false,
+                                        "acceptDeposits": true,
+                                        "roundingScale": 2,
+                                        "targetCurrencies": [
+                                            {
+                                                "currencyCode": "EUR"
+                                            },
+                                            {
+                                                "currencyCode": "PLN"
+                                            }
+                                        ]
+                                    },
+                                    "country": {
+                                        "id": "37",
+                                        "countryCode": "AS",
+                                        "name": "American Samoa",
+                                        "dialCode": "684",
+                                        "allowsRegistration": false,
+                                        "registrationMessage": null,
+                                        "defaultCurrency": {}
+                                    }
+                                }
+                            },
+                            "transferType": {
+                                "id": 1,
+                                "label": "Standard"
+                            },
+                            "purpose": {
+                                "id": "11",
+                                "label": "Other"
+                            },
+                            "currency": {
+                                "currencyCode": "GBP",
+                                "description": "Pound Sterling",
+                                "minDeposit": 7,
+                                "maxDeposit": 10000000,
+                                "minimumSellAmount": 5,
+                                "marketplaceEnabled": true,
+                                "aqtOnly": false,
+                                "buyOnly": false,
+                                "acceptDeposits": true,
+                                "roundingScale": null,
+                                "targetCurrencies": null
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "total_items": 1
+}

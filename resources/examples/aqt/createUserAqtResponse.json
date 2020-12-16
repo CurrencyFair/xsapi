@@ -1,0 +1,100 @@
+{
+  "id": "983718",
+  "created": "2020-10-27T16:12:26+00:00",
+  "deposit": {
+    "id": "2458854",
+    "created": "2020-10-27T16:12:26+00:00",
+    "createdBy": null,
+    "cancelledBy": null,
+    "currency": {
+      "currencyCode": "EUR",
+      "description": "Euro",
+      "minDeposit": 8,
+      "maxDeposit": 10000000,
+      "minimumSellAmount": 5,
+      "marketplaceEnabled": null,
+      "aqtOnly": null,
+      "buyOnly": null,
+      "acceptDeposits": null,
+      "roundingScale": null,
+      "targetCurrencies": null
+    },
+    "account": {
+      "accountId": "1020381",
+      "currency": {
+        "currencyCode": "EUR",
+        "description": "Euro",
+        "minDeposit": 8,
+        "maxDeposit": 10000000,
+        "minimumSellAmount": 5,
+        "marketplaceEnabled": null,
+        "aqtOnly": null,
+        "buyOnly": null,
+        "acceptDeposits": null,
+        "roundingScale": null,
+        "targetCurrencies": null
+      },
+      "accountName": "Joe Bloggs",
+      "bankName": "Bank of Ireland",
+      "bankAddress": [
+        "15 Main Street",
+        "Dublin",
+        "Dublin 5",
+        "Ireland"
+      ],
+      "accountInformation": null,
+      "country": 15,
+      "additionalInformation": null,
+      "createdByCustomer": null,
+      "beneficiaryAddress": null,
+      "beneficiaryCity": null,
+      "beneficiaryState": null,
+      "beneficiaryPostCode": null,
+      "beneficiaryCountryOfResidence": null,
+      "beneficiaryEmail": "beneficiary@example.com",
+      "beneficiaryEmailSend": true,
+      "accountNickname": "Joe's account",
+      "accountNumber": null
+    },
+    "aqt": {
+      "id": "983718",
+      "status": 0
+    },
+    "amountInfo": {
+      "amount": 100000,
+      "scale": 2
+    },
+    "feeAmountInfo": {
+      "amount": 0,
+      "scale": 2
+    },
+    "nettAmountInfo": {
+      "amount": 100000,
+      "scale": 2
+    },
+    "statusInfo": {
+      "status": 6,
+      "message": "Pending"
+    }
+  },
+  "order": null,
+  "transfer": null,
+  "estimatedArrivalDate": {
+    "intervalText": "Thursday",
+    "day": "29",
+    "ordinal": "th",
+    "month": "10",
+    "monthText": "October",
+    "year": "2020"
+  },
+  "_embedded": {
+    "status": {
+      "id": 0,
+      "label": "Active",
+      "description": "An active automatic quick trade"
+    },
+    "beneficiaryAccount": {
+      "accountId": "1022177"
+    }
+  }
+}

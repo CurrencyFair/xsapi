@@ -1,0 +1,63 @@
+{
+    "_embedded": {
+        "transferPurposes": [
+            {
+                "id": "139",
+                "label": "Transfer from self"
+            },
+            {
+                "id": "140",
+                "label": "Family maintenance"
+            },
+            {
+                "id": "141",
+                "label": "Payments for premium"
+            },
+            {
+                "id": "142",
+                "label": "Payments for mutual fund"
+            },
+            {
+                "id": "144",
+                "label": "Payments for purchase of residential property"
+            },
+            {
+                "id": "145",
+                "label": "Tuition fee"
+            },
+            {
+                "id": "146",
+                "label": "Hostel boarding fee"
+            },
+            {
+                "id": "147",
+                "label": "Examination fee"
+            },
+            {
+                "id": "148",
+                "label": "Payment for medical treatment of dependents"
+            },
+            {
+                "id": "149",
+                "label": "Payment toward hotel accomodation"
+            },
+            {
+                "id": "150",
+                "label": "Payments for travel"
+            },
+            {
+                "id": "151",
+                "label": "Trade transaction"
+            },
+            {
+                "id": "152",
+                "label": "Payments to banker for investment in shares debentures"
+            },
+            {
+                "id": "156",
+                "label": "Payments to banker for investment in shares debentures"
+            }
+        ]
+    },
+    "total_items": 14
+}

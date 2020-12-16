@@ -1,0 +1,20 @@
+{
+  "accountInformation": [
+    {
+      "name": "accountNumber",
+      "label": "Account Number",
+      "value": "002123456001"
+    },
+    {
+      "name": "hkBankCode",
+      "label": "Bank Code",
+      "value": "004"
+    }
+  ],
+  "country": {
+    "id": 12
+  },
+  "currency": {
+    "currencyCode": "HKD"
+  }
+}

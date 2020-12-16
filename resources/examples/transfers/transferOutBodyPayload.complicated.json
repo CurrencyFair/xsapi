@@ -1,0 +1,25 @@
+{
+    "account": {
+        "accountId": "1006762"
+    },
+    "amountInfo": {
+        "amount": 2345.67
+    },
+    "transferType": {
+        "id": 1
+    },
+    "feeInfo": {
+        "currency": {
+            "currencyCode": "GBP"
+        }
+    },
+    "references": {
+        "referenceField1": "JohnDoe12345"
+    },
+    "purpose": {
+        "id": "11"
+    },
+    "customTransferPurpose": "Just testing something",
+    "beneficiaryEmailSend": true,
+    "beneficiaryEmail": "jose.garcia@example.com"
+}

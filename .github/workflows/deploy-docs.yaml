@@ -1,0 +1,59 @@
+name: Build & Deploy Docs
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get PR branch name
+        if: github.event_name == 'pull_request'
+        run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_HEAD_REF})"
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '12.x'
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies and build docs
+        run: |
+          npm i
+          npm run build:docs
+          mkdir -p ./dist
+
+        # If this is a pull request then use [branch_name]/index.html
+      - if: github.event_name == 'pull_request'
+        name: Move docs to [branch]/index.html
+        run: |
+          mkdir -p ./dist/${BRANCH_NAME}
+          mv ./dist/index.html ./dist/${BRANCH_NAME}/index.html
+
+      - name: Deploy to GH pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          keep_files: true
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: '[Documentation for branch `${{ env.BRANCH_NAME }}`](https://currencyfair.github.io/xsapi/${{ env.BRANCH_NAME }}/index.html) 🚀'

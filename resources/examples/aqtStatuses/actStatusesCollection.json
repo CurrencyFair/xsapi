@@ -1,0 +1,62 @@
+{
+  "_embedded": {
+    "aqtStatuses": [
+      {
+        "id": 0,
+        "label": "Active",
+        "description": "An active automatic quick trade"
+      },
+      {
+        "id": 1,
+        "label": "Completed",
+        "description": "A completed automatic quick trade"
+      },
+      {
+        "id": 2,
+        "label": "Expired",
+        "description": "An expired automatic quick trade"
+      },
+      {
+        "id": 3,
+        "label": "Cancelled",
+        "description": "A canceled automatic quick trade"
+      },
+      {
+        "id": 4,
+        "label": "Failed",
+        "description": "A failed automatic quick trade"
+      },
+      {
+        "id": 5,
+        "label": "Suspended",
+        "description": "An automatic quick trade that is currently suspended"
+      },
+      {
+        "id": 6,
+        "label": "Suspended Awaiting Docs",
+        "description": "An automatic quick trade that is currently awaiting documents review"
+      },
+      {
+        "id": 7,
+        "label": "Suspended AML verification",
+        "description": "An automatic quick trade that failed verification"
+      },
+      {
+        "id": 8,
+        "label": "Processing",
+        "description": "An automatic quick trade that is currently being processed"
+      },
+      {
+        "id": 9,
+        "label": "Pending market Opening",
+        "description": "This automatic quick trade will be processed when the relevant markets next open"
+      },
+      {
+        "id": 10,
+        "label": "Suspended Awaiting Beneificary Info",
+        "description": "This automatic quick trade will be processed when the beneficiary adds his account details"
+      }
+    ]
+  },
+  "total_items": 11
+}

@@ -1,0 +1,14 @@
+# This file instructs Redocly's linter to ignore the rules contained for specific parts of your API.
+# See https://redoc.ly/docs/cli/ for more information.
+currencyfair.yaml:
+  no-unused-components:
+    - '#/components/schemas/FieldsMapEntity'
+    - '#/components/schemas/DepositsStepsCollection'
+    - '#/components/examples/NotFound'
+    - '#/components/examples/ValidationMessages'
+    - '#/components/examples/FailureMessages'
+    - '#/components/examples/MfaRequired'
+    - '#/components/requestBodies/SimplestObject'
+    - '#/components/requestBodies/UserRoleBodyPayload'
+    - '#/components/requestBodies/TieredPricingPostBody'
+    - '#/components/requestBodies/UpdateTermsAndConditionsBody'

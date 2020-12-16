@@ -1,0 +1,17 @@
+[
+  {
+    "name": "swift",
+    "label": "SWIFT/BIC",
+    "value": "HSBCHKHHHKH"
+  },
+  {
+    "name": "bankName",
+    "label": "Bank Name",
+    "value": "HONGKONG AND SHANGHAI BANKING CORPORATION LIMITED, THE"
+  },
+  {
+    "name": "bankAddress",
+    "label": "Bank Address",
+    "value": "1 QUEEN'S ROAD CENTRAL HONG KONG"
+  }
+]

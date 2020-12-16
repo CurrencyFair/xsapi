@@ -1,0 +1,20 @@
+{
+  "_embedded": {
+    "type": {
+      "id": 1,
+      "label": "Serial"
+    },
+    "steps": [
+      {
+        "id": 1,
+        "label": "Set up Payment",
+        "type": "TRANSFER_IN_CALCULATOR"
+      },
+      {
+        "id": 2,
+        "label": "Share Payment Details",
+        "type": "MAKE_PAYMENT"
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "swift",
+    "label": "SWIFT/BIC",
+    "value": "AIBKIE2DXXX"
+  },
+  {
+    "name": "bankName",
+    "label": "Bank Name",
+    "value": "AIB Bank"
+  },
+  {
+    "name": "bankAddress",
+    "label": "Bank Address",
+    "value": "12 ST. STEPHEN'S GREEN"
+  }
+]

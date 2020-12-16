@@ -1,0 +1,34 @@
+{
+  "name": "xsapi",
+  "version": "2.0.0",
+  "description": "CurrencyFair eXternal Services API",
+  "main": "",
+  "scripts": {
+    "start": "run-p start:redoc start:browser",
+    "start:redoc": "redoc-cli serve currencyfair.yaml --watch --options.hideHostname=1 --options.noAutoAuth=1 --options.requiredPropsFirst=1 --options.theme.colors.primary.main=#6799b6 --options.theme.schema.linesColor=#eeeeee --options.theme.rightPanel.backgroundColor=#32323c --options.theme.typography.fontFamily=\"Post Grotesk,Tahoma,sans-serif;\" --options.theme.typography.headings.fontFamily=\"Post Grotesk Book,Tahoma,sans-serif;\" --options.theme.logo.gutter=\"15px 30px\" --options.theme.logo.maxWidth=\"90%\"",
+    "start:browser": "wait-on http://localhost:8080 && open-cli http://localhost:8080",
+    "build": "run-s lint build:docs build:assets",
+    "build:docs": "redoc-cli bundle currencyfair.yaml --output dist/index.html --options.hideHostname=1 --options.noAutoAuth=1 --options.requiredPropsFirst=1 --options.theme.colors.primary.main=#6799b6 --options.theme.schema.linesColor=#eeeeee --options.theme.rightPanel.backgroundColor=#32323c --options.theme.typography.fontFamily=\"Post Grotesk,Tahoma,sans-serif;\" --options.theme.typography.headings.fontFamily=\"Post Grotesk Book,Tahoma,sans-serif;\" --options.theme.logo.gutter=\"15px 30px\" --options.theme.logo.maxWidth=\"90%\"",
+    "build:assets": "cp -r resources dist",
+    "lint": "openapi lint currencyfair.yaml"
+  },
+  "keywords": [
+    "CurrencyFair",
+    "API",
+    "Money",
+    "Exchange",
+    "Transfer",
+    "Rates"
+  ],
+  "author": "CurrencyFair",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "@redocly/openapi-cli": "^1.0.0-beta.18",
+    "npm-run-all": "^4.1.5",
+    "open-cli": "^6.0.1",
+    "redoc-cli": "^0.10.0",
+    "wait-on": "^5.2.0",
+    "yamljs": "^0.3.0"
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "account": {
+        "accountId": "1015541"
+    },
+    "amountInfo": {
+        "amount": 123.45
+    },
+    "transferType": {
+        "id": 1
+    },
+    "feeInfo": {
+        "currency": {
+            "currencyCode": "AUD"
+        }
+    },
+    "references": {
+        "referenceField1": null
+    },
+    "purpose": {
+        "id": "59"
+    },
+    "customTransferPurpose": null,
+    "beneficiaryEmailSend": null,
+    "beneficiaryEmail": null
+}

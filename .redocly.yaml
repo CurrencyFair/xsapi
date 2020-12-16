@@ -1,0 +1,10 @@
+lint:
+  extends:
+    # This is the default (and built in) configuration. If it is too strict, try `minimal`.
+    - recommended
+
+  rules:
+    no-invalid-media-type-examples: off # This allows importing local files as examples
+    no-empty-servers: off
+    no-unused-components: warn
+    info-license: off

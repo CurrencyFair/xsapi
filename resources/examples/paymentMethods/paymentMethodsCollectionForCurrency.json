@@ -1,0 +1,138 @@
+{
+  "currencyCode": "EUR",
+  "_embedded": {
+    "methods": [
+      {
+        "code": "account",
+        "label": "Bank Transfer",
+        "group": {
+          "label": "Zero cost deposit",
+          "name": "noCost"
+        },
+        "available": true,
+        "statusMessage": null,
+        "minimumAmount": 0,
+        "maximumAmount": 0,
+        "depositFee": {
+          "type": null,
+          "value": 0,
+          "scale": 0
+        },
+        "_embedded": {
+          "transactionTime": {
+            "estimatedArrivalDate": {
+              "intervalText": "Tuesday",
+              "day": "27",
+              "ordinal": "th",
+              "month": "10",
+              "monthText": "October",
+              "year": "2020"
+            },
+            "_embedded": {
+              "currency": {
+                "currencyCode": "EUR",
+                "description": "Euro",
+                "minDeposit": 8,
+                "maxDeposit": 10000000,
+                "minimumSellAmount": 5,
+                "roundingScale": 2
+              }
+            }
+          },
+          "account": {
+            "accountId": "270750",
+            "accountName": "CurrencyFair Ltd",
+            "bankName": "AIB",
+            "bankAddress": [
+              "Bankcentre branch, Serpentine Avenue",
+              "Ballsbridge",
+              "Dublin 4",
+              "Ireland"
+            ],
+            "accountInformation": [
+              {
+                "name": "accountNumber",
+                "label": "Account No",
+                "value": "21301283"
+              },
+              {
+                "name": "iban",
+                "label": "IBAN",
+                "value": "GB47BARC20000052375833"
+              },
+              {
+                "name": "bank_code",
+                "label": "Sort code",
+                "value": "931365"
+              },
+              {
+                "name": "swift",
+                "label": "SWIFT/BIC",
+                "value": "BOFIIE2DXXX"
+              }
+            ],
+            "message": "Euro standard transfers are made via the SEPA system within Europe.",
+            "reference": "CF4182220",
+            "_embedded": {
+              "currency": {
+                "currencyCode": "EUR",
+                "description": "Euro",
+                "minDeposit": 8,
+                "maxDeposit": 10000000,
+                "minimumSellAmount": 5,
+                "roundingScale": 2
+              },
+              "fields": [
+                {
+                  "name": "info-message",
+                  "type": "message",
+                  "label": "Euro standard transfers are made via the SEPA system within Europe.",
+                  "required": null
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "code": "paymentCard",
+        "label": "Debit Card",
+        "group": {
+          "label": "Express deposit",
+          "name": "paymentCards"
+        },
+        "available": true,
+        "statusMessage": null,
+        "minimumAmount": 8,
+        "maximumAmount": 10000,
+        "depositFee": {
+          "type": "percentage",
+          "value": "0.0025",
+          "scale": 4
+        },
+        "_embedded": {
+          "transactionTime": {
+            "estimatedArrivalDate": {
+              "intervalText": "Today",
+              "day": "23",
+              "ordinal": "rd",
+              "month": "10",
+              "monthText": "October",
+              "year": "2020"
+            },
+            "_embedded": {
+              "currency": {
+                "currencyCode": "EUR",
+                "description": "Euro",
+                "minDeposit": 8,
+                "maxDeposit": 10000000,
+                "minimumSellAmount": 5,
+                "roundingScale": 2
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+name: OpenAPI Linter
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  linter:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: '12.x'
+
+      - name: Cache Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies and run linter
+        run: |
+          npm i
+          npm run lint

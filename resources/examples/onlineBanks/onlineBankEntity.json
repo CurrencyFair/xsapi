@@ -1,0 +1,47 @@
+{
+    "id": "519",
+    "name": "Bank of Ireland",
+    "link": "https://www.365online.com",
+    "androidPackageName": "com.bankofireland.mobilebanking",
+    "iosUrlScheme": null,
+    "_embedded": {
+        "image": {
+            "id": "10",
+            "name": "Bank of Ireland",
+            "type": "image/png",
+            "height": 512,
+            "width": 512,
+            "link": "https://www.currencyfair.com/cf-content/themes/cfwp/img/logos/ie/bank-of-ireland.png"
+        },
+        "country": {
+            "id": "15",
+            "countryCode": "IE",
+            "name": "Ireland",
+            "dialCode": "353",
+            "allowsRegistration": true,
+            "registrationMessage": null,
+            "_embedded": {
+                "defaultCurrency": {
+                    "currencyCode": "EUR",
+                    "description": "Euro",
+                    "minDeposit": 8,
+                    "maxDeposit": 10000000,
+                    "minimumSellAmount": 5,
+                    "marketplaceEnabled": true,
+                    "aqtOnly": false,
+                    "buyOnly": false,
+                    "acceptDeposits": true,
+                    "roundingScale": 2,
+                    "targetCurrencies": [
+                        {
+                            "currencyCode": "AUD"
+                        },
+                        {
+                            "currencyCode": "GBP"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

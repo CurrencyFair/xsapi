@@ -1,0 +1,67 @@
+{
+    "_embedded": {
+        "transferPurposes": [
+            {
+                "id": "59",
+                "label": "Donation to a Charity"
+            },
+            {
+                "id": "60",
+                "label": "Education/Tuition Fees"
+            },
+            {
+                "id": "61",
+                "label": "FX transfer between own accounts to get a better rate"
+            },
+            {
+                "id": "62",
+                "label": "Family Support/Gift"
+            },
+            {
+                "id": "63",
+                "label": "Inheritance/Redundancy/Insurance Payout"
+            },
+            {
+                "id": "64",
+                "label": "Investment in Financial Product"
+            },
+            {
+                "id": "14",
+                "label": "Loans/Mortgages/Rent/Bills"
+            },
+            {
+                "id": "65",
+                "label": "Once off payment for raw materials/service/supplies"
+            },
+            {
+                "id": "66",
+                "label": "Purchase of Goods & Services"
+            },
+            {
+                "id": "4",
+                "label": "Purchase/Sale of Property/House"
+            },
+            {
+                "id": "67",
+                "label": "Regular payment for raw materials/service/supplies"
+            },
+            {
+                "id": "68",
+                "label": "Remitting Sale of Shares"
+            },
+            {
+                "id": "69",
+                "label": "Salary/Wages/Pension Payment"
+            },
+            {
+                "id": "70",
+                "label": "Travel Expenses"
+            },
+            {
+                "id": "11",
+                "label": "Other"
+            }
+        ]
+    },
+    "total_items": 15
+}

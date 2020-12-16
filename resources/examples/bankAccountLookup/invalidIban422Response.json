@@ -1,0 +1,11 @@
+{
+  "validation_messages": {
+    "iban": {
+      "invalidIban": "We can not verify your bank account details, please check and retry."
+    }
+  },
+  "type": "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html",
+  "title": "Unprocessable Entity",
+  "status": 422,
+  "detail": "Could not add bank account"
+}

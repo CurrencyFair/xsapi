@@ -1,0 +1,53 @@
+{
+  "accountId": "270750",
+  "accountName": "CurrencyFair Ltd",
+  "bankName": "AIB",
+  "bankAddress": [
+    "Bankcentre branch, Serpentine Avenue",
+    "Ballsbridge",
+    "Dublin 4",
+    "Ireland"
+  ],
+  "accountInformation": [
+    {
+      "name": "accountNumber",
+      "label": "Account No",
+      "value": "21301283"
+    },
+    {
+      "name": "iban",
+      "label": "IBAN",
+      "value": "GB47BARC20000052375833"
+    },
+    {
+      "name": "bank_code",
+      "label": "Sort code",
+      "value": "931365"
+    },
+    {
+      "name": "swift",
+      "label": "SWIFT/BIC",
+      "value": "IE25HDRD73367504201086"
+    }
+  ],
+  "message": "Euro standard transfers are made via the SEPA system within Europe.",
+  "reference": "CF4182220",
+  "_embedded": {
+    "currency": {
+      "currencyCode": "EUR",
+      "description": "Euro",
+      "minDeposit": 8,
+      "maxDeposit": 10000000,
+      "minimumSellAmount": 5,
+      "roundingScale": 2
+    },
+    "fields": [
+      {
+        "name": "info-message",
+        "type": "message",
+        "label": "Euro standard transfers are made via the SEPA system within Europe.",
+        "required": null
+      }
+    ]
+  }
+}

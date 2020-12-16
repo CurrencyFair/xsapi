@@ -1,0 +1,20 @@
+{
+  "_embedded": {
+    "type": {
+      "id": 1,
+      "label": "Serial"
+    },
+    "steps": [
+      {
+        "id": 1,
+        "label": "Top Up Details",
+        "type": "DEPOSIT_CALCULATOR"
+      },
+      {
+        "id": 2,
+        "label": "Send to CurrencyFair",
+        "type": "MAKE_DEPOSIT"
+      }
+    ]
+  }
+}

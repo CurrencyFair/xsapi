@@ -1,0 +1,17 @@
+[
+  {
+    "name": "swift",
+    "label": "SWIFT/BIC",
+    "value": "BOFAUS3NXXX"
+  },
+  {
+    "name": "bankName",
+    "label": "Bank Name",
+    "value": "BANK OF AMERICA, N.A."
+  },
+  {
+    "name": "bankAddress",
+    "label": "Bank Address",
+    "value": "222 BROADWAY NEW YORK,NY"
+  }
+]

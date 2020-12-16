@@ -1,0 +1,103 @@
+{
+    "lastActivity": "2020-04-07T10:05:46+01:00",
+    "pendingDepositInfo": {
+        "amount": 0,
+        "scale": 2
+    },
+    "pendingTransfersInfo": {
+        "amount": 0,
+        "scale": 2
+    },
+    "balanceInfo": {
+        "amount": 1234.56,
+        "scale": 2
+    },
+    "openOrdersInfo": {
+        "amount": 100,
+        "scale": 2
+    },
+    "fundsAvailableInfo": {
+        "amount": 1134.56,
+        "scale": 2
+    },
+    "pendingApprovalTransferCount": 0,
+    "_embedded": {
+        "currency": {
+            "currencyCode": "EUR",
+            "description": "Euro",
+            "minDeposit": 8,
+            "maxDeposit": 10000000,
+            "minimumSellAmount": 5,
+            "marketplaceEnabled": true,
+            "aqtOnly": false,
+            "buyOnly": false,
+            "acceptDeposits": true,
+            "roundingScale": 2,
+            "targetCurrencies": [
+                {
+                    "currencyCode": "DKK"
+                },
+                {
+                    "currencyCode": "AED"
+                },
+                {
+                    "currencyCode": "HUF"
+                },
+                {
+                    "currencyCode": "PHP"
+                },
+                {
+                    "currencyCode": "USD"
+                },
+                {
+                    "currencyCode": "ZAR"
+                },
+                {
+                    "currencyCode": "PLN"
+                },
+                {
+                    "currencyCode": "CZK"
+                },
+                {
+                    "currencyCode": "IDR"
+                },
+                {
+                    "currencyCode": "AUD"
+                },
+                {
+                    "currencyCode": "NOK"
+                },
+                {
+                    "currencyCode": "GBP"
+                },
+                {
+                    "currencyCode": "INR"
+                },
+                {
+                    "currencyCode": "ILS"
+                },
+                {
+                    "currencyCode": "CAD"
+                },
+                {
+                    "currencyCode": "HKD"
+                },
+                {
+                    "currencyCode": "NZD"
+                },
+                {
+                    "currencyCode": "SEK"
+                },
+                {
+                    "currencyCode": "THB"
+                },
+                {
+                    "currencyCode": "SGD"
+                },
+                {
+                    "currencyCode": "CHF"
+                }
+            ]
+        }
+    }
+}

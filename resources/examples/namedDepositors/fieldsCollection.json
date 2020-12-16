@@ -1,0 +1,66 @@
+{
+    "_embedded": {
+        "fields": [
+            {
+                "name": "nameMessage",
+                "type": "message",
+                "label": "The closer this matches the actual bank account name, the greater chance of a quick and seamless transfer in. If you are unsure, please use the person’s full name or the full company name.",
+                "required": false,
+                "_links": []
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "label": "Account Name",
+                "required": true,
+                "validators": [
+                    {
+                        "validator": "minMax",
+                        "rules": {
+                            "minlength": 1,
+                            "maxlength": 30
+                        },
+                        "message": "The value that you've provided is not the correct length. Please enter the correct length and retry."
+                    },
+                    {
+                        "validator": "regex",
+                        "rules": {
+                            "regexvalue": "^[A-Za-z0-9 ',\\(\\+\\)\\.\\?\\#\\/-]+$",
+                            "jsRegex": "^[A-Za-z0-9 ',\\(\\+\\)\\.\\?\\#\\/-]+$",
+                            "pcreRegex": "^[A-Za-z0-9 ',\\(\\+\\)\\.\\?\\#\\/-]+$"
+                        },
+                        "message": "The value contains characters that are not allowed."
+                    }
+                ],
+                "filters": [
+                    {
+                        "filter": "trim"
+                    }
+                ],
+                "_links": []
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "label": "Description",
+                "required": false,
+                "validators": [
+                    {
+                        "validator": "minMax",
+                        "rules": {
+                            "minlength": 1,
+                            "maxlength": 30
+                        },
+                        "message": "The value that you've provided is not the correct length. Please enter the correct length and retry."
+                    }
+                ],
+                "filters": [
+                    {
+                        "filter": "trim"
+                    }
+                ],
+                "_links": []
+            }
+        ]
+    }
+}

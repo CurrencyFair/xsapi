@@ -1,0 +1,20 @@
+{
+  "_embedded": {
+    "type": {
+      "id": 1,
+      "label": "Serial"
+    },
+    "steps": [
+      {
+        "id": 1,
+        "label": "Set up Transfer In",
+        "type": "TRANSFER_IN_CALCULATOR"
+      },
+      {
+        "id": 2,
+        "label": "Send to CurrencyFair",
+        "type": "MAKE_PAYMENT"
+      }
+    ]
+  }
+}

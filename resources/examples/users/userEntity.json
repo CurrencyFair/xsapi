@@ -1,0 +1,166 @@
+{
+    "id": "578225",
+    "salutation": null,
+    "firstname": "John",
+    "middleName": null,
+    "surname": "Doe",
+    "dateOfBirth": "1977-11-11",
+    "email": "john.doe@example.com",
+    "address1": "12 Main Street",
+    "address2": null,
+    "address3": null,
+    "city": "Macroom",
+    "postCode": "D01",
+    "isCompany": false,
+    "regionalEntity": "Ireland",
+    "isSubUser": false,
+    "company": null,
+    "_embedded": {
+        "country": {
+            "id": "15",
+            "countryCode": "IE",
+            "name": "Ireland",
+            "dialCode": "353",
+            "allowsRegistration": true,
+            "registrationMessage": null,
+            "_embedded": {
+                "defaultCurrency": {
+                    "currencyCode": "EUR",
+                    "description": "Euro",
+                    "minDeposit": 8,
+                    "maxDeposit": 10000000,
+                    "minimumSellAmount": 5,
+                    "marketplaceEnabled": true,
+                    "aqtOnly": false,
+                    "buyOnly": false,
+                    "acceptDeposits": true,
+                    "roundingScale": 2,
+                    "targetCurrencies": [
+                        {
+                            "currencyCode": "DKK"
+                        },
+                        {
+                            "currencyCode": "AED"
+                        },
+                        {
+                            "currencyCode": "HUF"
+                        },
+                        {
+                            "currencyCode": "PHP"
+                        },
+                        {
+                            "currencyCode": "USD"
+                        },
+                        {
+                            "currencyCode": "ZAR"
+                        },
+                        {
+                            "currencyCode": "PLN"
+                        },
+                        {
+                            "currencyCode": "CZK"
+                        },
+                        {
+                            "currencyCode": "IDR"
+                        },
+                        {
+                            "currencyCode": "AUD"
+                        },
+                        {
+                            "currencyCode": "NOK"
+                        },
+                        {
+                            "currencyCode": "GBP"
+                        },
+                        {
+                            "currencyCode": "INR"
+                        },
+                        {
+                            "currencyCode": "ILS"
+                        },
+                        {
+                            "currencyCode": "CAD"
+                        },
+                        {
+                            "currencyCode": "HKD"
+                        },
+                        {
+                            "currencyCode": "NZD"
+                        },
+                        {
+                            "currencyCode": "SEK"
+                        },
+                        {
+                            "currencyCode": "THB"
+                        },
+                        {
+                            "currencyCode": "SGD"
+                        },
+                        {
+                            "currencyCode": "CHF"
+                        }
+                    ]
+                }
+            }
+        },
+        "nationality": {
+            "id": "197",
+            "label": "Irish"
+        },
+        "language": {
+            "id": 1,
+            "name": "English",
+            "code": "en"
+        },
+        "capabilities": {
+            "canLogin": true,
+            "canTrade": true,
+            "canDeposit": true,
+            "canTransfer": true,
+            "canEditProfile": true,
+            "canManageAccounts": true
+        },
+        "state": {
+            "label": "ACTIVE",
+            "description": "Active Verified Account"
+        },
+        "phone": {
+            "number": "868179431",
+            "countryId": 15,
+            "dialCode": "353",
+            "_links": []
+        },
+        "role": {
+            "id": "1",
+            "name": "Default Role",
+            "description": "Default Role",
+            "readonly": true,
+            "capabilities": {
+                "canCreateDeposits": true,
+                "canCancelDeposits": true,
+                "canCreateQuickExchange": true,
+                "canCreateMarketPlaceExchange": true,
+                "canEditMarketPlaceExchange": true,
+                "canCancelMarketPlaceExchange": true,
+                "canCreateTransfer": true,
+                "canApproveTransfer": true,
+                "canSelfApproveTransfer": true,
+                "canCreateRecipients": true,
+                "canRemoveRecipients": true,
+                "canCreateSendMoney": true,
+                "canCancelSendMoney": true,
+                "canManageUsers": false,
+                "canManageRecurringTransactions": true,
+                "canEditProfile": true,
+                "canManageXero": true
+            },
+            "parameters": {
+                "approvalThreshold": 0,
+                "selfApprovalThreshold": 0,
+                "allowedFlow": "APPLICATION",
+                "allowedFlowFallbackMsg": "We are unable to log you in on our mobile app, click OK to navigate to our web application",
+                "allowedFlowFallbackUrl": "https://app.currencyfair.com/login/login"
+            }
+        }
+    }
+}

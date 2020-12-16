@@ -1,0 +1,515 @@
+{
+    "_embedded": {
+        "transfers": [
+            {
+                "id": "107025009",
+                "created": "2020-10-19T13:47:52+01:00",
+                "createdBy": {
+                    "id": "578373",
+                    "firstname": "John",
+                    "surname": "Doe"
+                },
+                "cancelledBy": null,
+                "aqt": null,
+                "references": {
+                    "referenceField1": null,
+                    "referenceField2": null
+                },
+                "amountInfo": {
+                    "amount": -123.45,
+                    "scale": 2
+                },
+                "feeInfo": null,
+                "statusInfo": {
+                    "status": 2,
+                    "message": "Confirmed"
+                },
+                "customTransferPurpose": null,
+                "estimatedArrivalDate": null,
+                "_embedded": {
+                    "account": {
+                        "accountId": 1015541,
+                        "accountName": "test",
+                        "bankName": "MECU LIMITED",
+                        "bankAddress": [
+                            "222 HIGH STREET KEW"
+                        ],
+                        "accountInformation": [
+                            {
+                                "name": "accountNumber",
+                                "label": "Account No",
+                                "value": "363367673"
+                            },
+                            {
+                                "name": "swift",
+                                "label": "SWIFT/BIC",
+                                "value": "MCUUAU31XXX"
+                            },
+                            {
+                                "name": "sortCode",
+                                "label": "BSB No.",
+                                "value": "313140"
+                            }
+                        ],
+                        "additionalInformation": null,
+                        "createdByCustomer": {
+                            "id": "578373",
+                            "firstname": "John",
+                            "surname": "Doe"
+                        },
+                        "beneficiaryAddress": null,
+                        "beneficiaryCity": null,
+                        "beneficiaryState": null,
+                        "beneficiaryPostCode": null,
+                        "beneficiaryCountryOfResidence": null,
+                        "beneficiaryEmail": null,
+                        "beneficiaryEmailSend": null,
+                        "accountNickname": null,
+                        "accountNumber": "363367673",
+                        "_embedded": {
+                            "currency": {
+                                "currencyCode": "AUD",
+                                "description": "Australian Dollar",
+                                "minDeposit": 10,
+                                "maxDeposit": 10000000,
+                                "minimumSellAmount": 5,
+                                "marketplaceEnabled": true,
+                                "aqtOnly": false,
+                                "buyOnly": false,
+                                "acceptDeposits": true,
+                                "roundingScale": 2,
+                                "targetCurrencies": [
+                                    {
+                                        "currencyCode": "DKK"
+                                    },
+                                    {
+                                        "currencyCode": "AED"
+                                    },
+                                    {
+                                        "currencyCode": "HUF"
+                                    },
+                                    {
+                                        "currencyCode": "PHP"
+                                    },
+                                    {
+                                        "currencyCode": "USD"
+                                    },
+                                    {
+                                        "currencyCode": "PLN"
+                                    },
+                                    {
+                                        "currencyCode": "EUR"
+                                    },
+                                    {
+                                        "currencyCode": "ZAR"
+                                    },
+                                    {
+                                        "currencyCode": "IDR"
+                                    },
+                                    {
+                                        "currencyCode": "CZK"
+                                    },
+                                    {
+                                        "currencyCode": "NOK"
+                                    },
+                                    {
+                                        "currencyCode": "GBP"
+                                    },
+                                    {
+                                        "currencyCode": "ILS"
+                                    },
+                                    {
+                                        "currencyCode": "INR"
+                                    },
+                                    {
+                                        "currencyCode": "HKD"
+                                    },
+                                    {
+                                        "currencyCode": "CAD"
+                                    },
+                                    {
+                                        "currencyCode": "NZD"
+                                    },
+                                    {
+                                        "currencyCode": "SEK"
+                                    },
+                                    {
+                                        "currencyCode": "THB"
+                                    },
+                                    {
+                                        "currencyCode": "CHF"
+                                    },
+                                    {
+                                        "currencyCode": "SGD"
+                                    }
+                                ]
+                            },
+                            "country": {
+                                "id": "2",
+                                "countryCode": "AU",
+                                "name": "Australia",
+                                "dialCode": "61",
+                                "allowsRegistration": true,
+                                "registrationMessage": null,
+                                "_embedded": {
+                                    "defaultCurrency": {
+                                        "currencyCode": "AUD",
+                                        "description": "Australian Dollar",
+                                        "minDeposit": 10,
+                                        "maxDeposit": 10000000,
+                                        "minimumSellAmount": 5,
+                                        "marketplaceEnabled": true,
+                                        "aqtOnly": false,
+                                        "buyOnly": false,
+                                        "acceptDeposits": true,
+                                        "roundingScale": 2,
+                                        "targetCurrencies": [
+                                            {
+                                                "currencyCode": "DKK"
+                                            },
+                                            {
+                                                "currencyCode": "AED"
+                                            },
+                                            {
+                                                "currencyCode": "HUF"
+                                            },
+                                            {
+                                                "currencyCode": "PHP"
+                                            },
+                                            {
+                                                "currencyCode": "USD"
+                                            },
+                                            {
+                                                "currencyCode": "PLN"
+                                            },
+                                            {
+                                                "currencyCode": "EUR"
+                                            },
+                                            {
+                                                "currencyCode": "ZAR"
+                                            },
+                                            {
+                                                "currencyCode": "IDR"
+                                            },
+                                            {
+                                                "currencyCode": "CZK"
+                                            },
+                                            {
+                                                "currencyCode": "NOK"
+                                            },
+                                            {
+                                                "currencyCode": "GBP"
+                                            },
+                                            {
+                                                "currencyCode": "ILS"
+                                            },
+                                            {
+                                                "currencyCode": "INR"
+                                            },
+                                            {
+                                                "currencyCode": "HKD"
+                                            },
+                                            {
+                                                "currencyCode": "CAD"
+                                            },
+                                            {
+                                                "currencyCode": "NZD"
+                                            },
+                                            {
+                                                "currencyCode": "SEK"
+                                            },
+                                            {
+                                                "currencyCode": "THB"
+                                            },
+                                            {
+                                                "currencyCode": "CHF"
+                                            },
+                                            {
+                                                "currencyCode": "SGD"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "transferType": {
+                        "id": 1,
+                        "label": "Standard"
+                    },
+                    "purpose": {
+                        "id": "59",
+                        "label": "Donation to a Charity"
+                    },
+                    "currency": {
+                        "currencyCode": "AUD",
+                        "description": "Australian Dollar",
+                        "minDeposit": 10,
+                        "maxDeposit": 10000000,
+                        "minimumSellAmount": 5,
+                        "marketplaceEnabled": true,
+                        "aqtOnly": false,
+                        "buyOnly": false,
+                        "acceptDeposits": true,
+                        "roundingScale": null,
+                        "targetCurrencies": null
+                    }
+                }
+            },
+            {
+                "id": "107025001",
+                "created": "2020-10-19T13:36:31+01:00",
+                "createdBy": {
+                    "id": "578373",
+                    "firstname": "John",
+                    "surname": "Doe"
+                },
+                "cancelledBy": null,
+                "aqt": null,
+                "references": {
+                    "referenceField1": null,
+                    "referenceField2": null
+                },
+                "amountInfo": {
+                    "amount": -1234.56,
+                    "scale": 2
+                },
+                "feeInfo": null,
+                "statusInfo": {
+                    "status": 2,
+                    "message": "Confirmed"
+                },
+                "customTransferPurpose": null,
+                "estimatedArrivalDate": null,
+                "_embedded": {
+                    "account": {
+                        "accountId": 1006759,
+                        "accountName": "test",
+                        "bankName": "LLOYDS BANK PLC",
+                        "bankAddress": [
+                            "BAILEY DRIVE GILLINGHAM BUSINESS PARK GILLINGHAM"
+                        ],
+                        "accountInformation": [
+                            {
+                                "name": "iban",
+                                "label": "IBAN",
+                                "value": "GB96LOYD30801212171460"
+                            },
+                            {
+                                "name": "swift",
+                                "label": "SWIFT/BIC",
+                                "value": "LOYDGB2LXXX"
+                            }
+                        ],
+                        "additionalInformation": null,
+                        "createdByCustomer": {
+                            "id": "578373",
+                            "firstname": "John",
+                            "surname": "Doe"
+                        },
+                        "beneficiaryAddress": null,
+                        "beneficiaryCity": null,
+                        "beneficiaryState": null,
+                        "beneficiaryPostCode": null,
+                        "beneficiaryCountryOfResidence": null,
+                        "beneficiaryEmail": null,
+                        "beneficiaryEmailSend": null,
+                        "accountNickname": null,
+                        "accountNumber": null,
+                        "_embedded": {
+                            "currency": {
+                                "currencyCode": "EUR",
+                                "description": "Euro",
+                                "minDeposit": 8,
+                                "maxDeposit": 10000000,
+                                "minimumSellAmount": 5,
+                                "marketplaceEnabled": true,
+                                "aqtOnly": false,
+                                "buyOnly": false,
+                                "acceptDeposits": true,
+                                "roundingScale": 2,
+                                "targetCurrencies": [
+                                    {
+                                        "currencyCode": "DKK"
+                                    },
+                                    {
+                                        "currencyCode": "AED"
+                                    },
+                                    {
+                                        "currencyCode": "HUF"
+                                    },
+                                    {
+                                        "currencyCode": "PHP"
+                                    },
+                                    {
+                                        "currencyCode": "USD"
+                                    },
+                                    {
+                                        "currencyCode": "ZAR"
+                                    },
+                                    {
+                                        "currencyCode": "PLN"
+                                    },
+                                    {
+                                        "currencyCode": "CZK"
+                                    },
+                                    {
+                                        "currencyCode": "IDR"
+                                    },
+                                    {
+                                        "currencyCode": "AUD"
+                                    },
+                                    {
+                                        "currencyCode": "NOK"
+                                    },
+                                    {
+                                        "currencyCode": "GBP"
+                                    },
+                                    {
+                                        "currencyCode": "INR"
+                                    },
+                                    {
+                                        "currencyCode": "ILS"
+                                    },
+                                    {
+                                        "currencyCode": "CAD"
+                                    },
+                                    {
+                                        "currencyCode": "HKD"
+                                    },
+                                    {
+                                        "currencyCode": "NZD"
+                                    },
+                                    {
+                                        "currencyCode": "SEK"
+                                    },
+                                    {
+                                        "currencyCode": "THB"
+                                    },
+                                    {
+                                        "currencyCode": "SGD"
+                                    },
+                                    {
+                                        "currencyCode": "CHF"
+                                    }
+                                ]
+                            },
+                            "country": {
+                                "id": "32",
+                                "countryCode": "GB",
+                                "name": "United Kingdom",
+                                "dialCode": "44",
+                                "allowsRegistration": true,
+                                "registrationMessage": null,
+                                "_embedded": {
+                                    "defaultCurrency": {
+                                        "currencyCode": "GBP",
+                                        "description": "Pound Sterling",
+                                        "minDeposit": 7,
+                                        "maxDeposit": 10000000,
+                                        "minimumSellAmount": 5,
+                                        "marketplaceEnabled": true,
+                                        "aqtOnly": false,
+                                        "buyOnly": false,
+                                        "acceptDeposits": true,
+                                        "roundingScale": 2,
+                                        "targetCurrencies": [
+                                            {
+                                                "currencyCode": "USD"
+                                            },
+                                            {
+                                                "currencyCode": "PHP"
+                                            },
+                                            {
+                                                "currencyCode": "EUR"
+                                            },
+                                            {
+                                                "currencyCode": "PLN"
+                                            },
+                                            {
+                                                "currencyCode": "ZAR"
+                                            },
+                                            {
+                                                "currencyCode": "NOK"
+                                            },
+                                            {
+                                                "currencyCode": "CZK"
+                                            },
+                                            {
+                                                "currencyCode": "IDR"
+                                            },
+                                            {
+                                                "currencyCode": "AUD"
+                                            },
+                                            {
+                                                "currencyCode": "CAD"
+                                            },
+                                            {
+                                                "currencyCode": "HKD"
+                                            },
+                                            {
+                                                "currencyCode": "ILS"
+                                            },
+                                            {
+                                                "currencyCode": "NZD"
+                                            },
+                                            {
+                                                "currencyCode": "INR"
+                                            },
+                                            {
+                                                "currencyCode": "SEK"
+                                            },
+                                            {
+                                                "currencyCode": "SGD"
+                                            },
+                                            {
+                                                "currencyCode": "THB"
+                                            },
+                                            {
+                                                "currencyCode": "DKK"
+                                            },
+                                            {
+                                                "currencyCode": "AED"
+                                            },
+                                            {
+                                                "currencyCode": "CHF"
+                                            },
+                                            {
+                                                "currencyCode": "HUF"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "transferType": {
+                        "id": 1,
+                        "label": "Standard"
+                    },
+                    "purpose": {
+                        "id": "60",
+                        "label": "Education/Tuition Fees"
+                    },
+                    "currency": {
+                        "currencyCode": "EUR",
+                        "description": "Euro",
+                        "minDeposit": 8,
+                        "maxDeposit": 10000000,
+                        "minimumSellAmount": 5,
+                        "marketplaceEnabled": true,
+                        "aqtOnly": false,
+                        "buyOnly": false,
+                        "acceptDeposits": true,
+                        "roundingScale": null,
+                        "targetCurrencies": null
+                    }
+                }
+            }
+        ]
+    },
+    "page_count": 1,
+    "page_size": 25,
+    "total_items": 2,
+    "page": 1
+}
