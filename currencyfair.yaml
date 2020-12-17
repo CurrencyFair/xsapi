@@ -358,7 +358,7 @@ paths:
       operationId: getWhoAmI
       security:
         - api_key: []
-          Bearer: []  # without the dash, it indicates AND
+          Bearer: []  # Note there is no dash, this indicates AND
       # Authorization Parameter is required for method request mapping to integration request.
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
