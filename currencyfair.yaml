@@ -3795,7 +3795,7 @@ components:
           properties:
             validation_messages:
               type: object
-              description: "Object holding validation messages."
+              description: Object holding validation messages.
     ApiErrorWithMessages:
       allOf:
         - type: object
