@@ -24,6 +24,7 @@ info:
     The sandbox servers are assigned to users when they register as an API partner.
 
     The following headers can be attached to HTTPS calls to our API:
+      - `x-api-key: <secret provided by CurrencyFair>` - must always be sent in every request, grants access to the API (authentication is performed separately).
       - `Authentication: Bearer <api_token>` - must be set to authenticate the call. Read more in the [Authentication](#section/Authentication) section.
       - `Content-Type: application/json` - must be set on POST/PUT/PATCH calls when a JSON body payload is sent.
       - `Accept-Language: <two_letter_language_code>` - to set the language. Defaults to `en` if not provided. Currently supported languages: `en`, `fr`, `de`.
@@ -303,10 +304,12 @@ paths:
         - api_key: []
       parameters:
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/ContentTypeHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       requestBody:
         description: The form values for authentication.
         content:
-          application/x-www-form-urlencoded:
+          multipart/form-data:
             schema:
               type: object
               properties:
@@ -351,6 +354,13 @@ paths:
         type: "http"
         requestParameters:
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Content-Type: "method.request.header.Content-Type"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
+          401:
+            statusCode: 401
   "/whoami":
     get:
       summary: Who Am I
@@ -363,6 +373,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - User Information
       responses:
@@ -389,6 +400,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
+          401:
+            statusCode: 401
+          403:
+            statusCode: 403
   "/countries":
     get:
       summary: Retrieve a list of Countries
@@ -403,6 +422,8 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
+        - $ref: "#/components/parameters/CurrencyCodeOptionalQueryParam"
         - name: account
           in: query
           description: Use value `1` to get the list of Countries filtered by those which allow the setting up of a Bank Account.
@@ -436,7 +457,12 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.querystring.account: "method.request.querystring.account"
+          integration.request.querystring.currencyCode: "method.request.querystring.currencyCode"
+        responses:
+          200:
+            statusCode: 200
   "/countries/{id}":
     get:
       summary: Retrieve a Country
@@ -448,6 +474,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: id
           in: path
           description: Country ID
@@ -459,6 +486,13 @@ paths:
       responses:
         '200':
           description: Country object
+          headers:
+            Vary:
+              schema:
+                type: string
+            Cache-Control:
+              schema:
+                type: string
           content:
             application/hal+json:
               schema:
@@ -480,7 +514,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+            responseParameters:
+              method.response.header.Vary: "integration.response.header.Vary"
+              method.response.header.Cache-Control: "integration.response.header.Cache-Control"
+          404:
+            statusCode: 404
   "/currencies":
     get:
       summary: Retrieve a list of Currencies
@@ -492,6 +535,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: include_disabled
           in: query
           description: Use value `1` to retrieve a list of all currencies, including those which are disabled.
@@ -532,6 +576,8 @@ paths:
                   summary: Currencies collection
                   value:
                     $ref: "resources/examples/currencies/currenciesCollection.json"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -543,10 +589,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.querystring.include_disabled: "method.request.querystring.include_disabled"
           integration.request.querystring.cf_client_account: "method.request.querystring.cf_client_account"
           integration.request.querystring.account: "method.request.querystring.account"
           integration.request.querystring.regional_entity: "method.request.querystring.regional_entity"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/currencies/{currencyCode}":
     get:
       summary: Retrieve a Currency
@@ -558,6 +610,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
       tags:
         - Countries & Currencies
@@ -585,7 +638,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/comparisonQuotes":
     post:
       summary: Retrieve a Comparison Quote
@@ -601,6 +660,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Quote and Exchange Money
       requestBody:
@@ -611,7 +671,7 @@ paths:
         description: If no parameters are provided the call will return a `SELL` quote
           for €10,000 from `EUR` to `GBP`
       responses:
-        '200':
+        '201':
           description: ComparisonQuotes object
           content:
             application/json:
@@ -619,6 +679,8 @@ paths:
                 $ref: "#/components/schemas/ComparisonQuotesEntity"
         '404':
           $ref: "#/components/responses/NotFound"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -629,6 +691,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          201:
+            statusCode: 201
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}":
     get:
       summary: Retrieve a User
@@ -642,6 +712,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -662,7 +733,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/summaries":
     get:
       summary: Retrieve a list of Summaries
@@ -678,6 +755,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -701,7 +779,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/summaries/{currencyCode}":
     get:
       summary: Retrieve a Summary
@@ -717,6 +799,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
       responses:
@@ -743,8 +826,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/quicktradeQuotes":
     post:
       summary: Return QuickTrade Quote
@@ -756,6 +845,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Quote and Exchange Money
       requestBody:
@@ -765,7 +855,7 @@ paths:
               $ref: "#/components/schemas/QuickTradeQuotesBodyPayload"
         required: true
       responses:
-        '200':
+        '201':
           description: QuickTradeQuotes object
           content:
             application/json:
@@ -785,6 +875,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          201:
+            statusCode: 201
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/quicktradeOrders":
     post:
       summary: Create a QuickTrade Order
@@ -801,6 +899,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Quote and Exchange Money
       requestBody:
@@ -830,6 +929,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}/orders":
     get:
       summary: Retrieve a list of User Orders
@@ -843,6 +950,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/PageParam"
         - $ref: "#/components/parameters/PageSizeParam"
@@ -904,10 +1012,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.page: "method.request.querystring.page"
           integration.request.querystring.page_size: "method.request.querystring.page_size"
           integration.request.querystring.order_dir: "method.request.querystring.order_dir"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/orders/{orderId}":
     get:
       summary: Retrieve an Order
@@ -921,6 +1033,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/OrderIdParam"
       responses:
@@ -942,8 +1055,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.orderId: "method.request.path.orderId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
     patch:
       summary: Update an open Order rate
       description: Updates an open Order rate for a user.
@@ -956,6 +1075,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/OrderIdParam"
       requestBody:
@@ -985,8 +1105,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.orderId: "method.request.path.orderId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     delete:
       summary: Cancel an Open Order
       description: Cancels an Open Order for a user.
@@ -999,6 +1127,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/OrderIdParam"
         - name: amount
@@ -1024,8 +1153,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.orderId: "method.request.path.orderId"
+        responses:
+          204:
+            statusCode: 204
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}/orders/{orderId}/history":
     get:
       summary: Retrieve Order History
@@ -1039,6 +1176,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/OrderIdParam"
       responses:
@@ -1060,8 +1198,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.orderId: "method.request.path.orderId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/marketplaces":
     get:
       summary: Retrieve Currency Marketplace Information
@@ -1074,6 +1218,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Marketplace
       responses:
@@ -1098,6 +1243,10 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
   "/marketplaces/{currencyFrom}/{currencyTo}":
     get:
       summary: Retrieve Marketplace information for a currency pair
@@ -1111,6 +1260,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: currencyFrom
           in: path
           required: true
@@ -1140,8 +1290,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.currencyFrom: "method.request.path.currencyFrom"
           integration.request.path.currencyTo: "method.request.path.currencyTo"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/marketplaceOrders":
     post:
       summary: Create Marketplace Order
@@ -1154,6 +1310,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Marketplace
       requestBody:
@@ -1183,6 +1340,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}/deposits":
     post:
       summary: Create a Deposit
@@ -1196,6 +1361,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       requestBody:
         content:
@@ -1213,7 +1379,7 @@ paths:
               $ref: "#/components/schemas/DepositsCreateBodyPayload"
         required: true
       responses:
-        '200':
+        '201':
           description: The Deposit Entity.
           content:
             application/hal+json:
@@ -1236,7 +1402,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          201:
+            statusCode: 201
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a list of Deposits
       description: Retrieves a collection of Deposits for a user.
@@ -1249,6 +1421,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/PageParam"
         - $ref: "#/components/parameters/PageSizeParam"
@@ -1272,9 +1445,15 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.page: "method.request.querystring.page"
           integration.request.querystring.page_size: "method.request.querystring.page_size"
+        responses:
+          200:
+            statusCode: 200
+          403:
+            statusCode: 403
   "/users/{userId}/deposits/{id}":
     patch:
       summary: Update a Deposit's values
@@ -1288,6 +1467,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: id
           in: path
@@ -1309,6 +1489,8 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/DepositsEntity"
+        '404':
+          $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -1321,8 +1503,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a Deposit
       description: Retrieves a Deposit for a user.
@@ -1335,6 +1525,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: id
           in: path
@@ -1364,8 +1555,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          403:
+            statusCode: 403
   "/currencyfair/accounts":
     get:
       summary: Retrieve a list of CurrencyFair Bank Accounts
@@ -1377,6 +1576,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Depositing
       responses:
@@ -1401,6 +1601,10 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
   "/currencyfair/accounts/{currencyCode}":
     get:
       summary: Retrieve a CurrencyFair Bank Account
@@ -1414,6 +1618,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
       responses:
         '200':
@@ -1439,7 +1644,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/transfers":
     post:
       summary: Create a Transfer Out
@@ -1454,6 +1665,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       requestBody:
         content:
@@ -1492,7 +1704,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          201:
+            statusCode: 201
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a list Transfer Outs
       description: Retrieves a collection of Transfer Out entities for a user, paginated to
@@ -1507,6 +1725,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/PageParam"
         - in: query
@@ -1535,9 +1754,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.page: "method.request.querystring.page"
           integration.request.querystring.status: "method.request.querystring.status"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/transfers/{transferId}":
     get:
       summary: Retrieve a Transfer Out
@@ -1551,6 +1774,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/TransferOutIdParam"
       responses:
@@ -1587,8 +1811,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.transferId: "method.request.path.transferId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
     patch:
       summary: Update an existing Transfer
       description: Partially update the Transfer Out for a user. Allows updating the
@@ -1603,6 +1833,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/TransferOutIdParam"
       requestBody:
@@ -1644,8 +1875,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.transferId: "method.request.path.transferId"
+        responses:
+          200:
+            statusCode: 200
+          403:
+            statusCode: 403
   "/transferTypes":
     get:
       summary: Retrieve a list of Transfer Types
@@ -1657,6 +1894,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Transfer Out
       responses:
@@ -1681,6 +1919,10 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
   "/transferPurposes":
     get:
       summary: Retrieve a list of Transfer Purposes
@@ -1692,6 +1934,15 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
+        - name: currencyCode
+          in: query
+          description: The 3 character currency code in ISO 4217 format.
+          required: false
+          schema:
+            type: string
+            example: EUR
+            pattern: "[A-Z]{3}"
       tags:
         - Transfer Out
       responses:
@@ -1710,6 +1961,8 @@ paths:
                   summary: Transfer Purposes collection for specific currency
                   value:
                     - $ref: "resources/examples/transferPurposes/transferPurposesForCurrencyCollection.json"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1720,6 +1973,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+          integration.request.querystring.currencyCode: "method.request.querystring.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/transferFees":
     get:
       summary: Retrieve a list of Transfer Fees
@@ -1733,6 +1993,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: excludeFreeTransfer
           in: query
           description: Use value `1` to ignore Free Transfers.
@@ -1764,7 +2025,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.querystring.excludeFreeTransfer: "method.request.querystring.excludeFreeTransfer"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/rewards/transfers/detail":
     get:
       summary: Retrieve a list of Free Transfer Reward details for a user
@@ -1781,6 +2046,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -1804,7 +2070,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/accounts/{accountId}":
     get:
       summary: Retrieve a Recipient Bank Account
@@ -1818,6 +2088,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/AccountIdParam"
       responses:
@@ -1843,8 +2114,18 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.accountId: "method.request.path.accountId"
+        responses:
+          200:
+            statusCode: 200
+          403:
+            statusCode: 403
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     delete:
       summary: Delete a Recipient Bank Account
       description: Delete a Recipient Bank Account for a user.
@@ -1857,6 +2138,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/AccountIdParam"
       responses:
@@ -1878,8 +2160,18 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.accountId: "method.request.path.accountId"
+        responses:
+          204:
+            statusCode: 204
+          403:
+            statusCode: 403
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     patch:
       summary: Update a Recipient Bank Account's values
       description: |
@@ -1895,6 +2187,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/AccountIdParam"
       requestBody:
@@ -1922,8 +2215,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.accountId: "method.request.path.accountId"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/users/{userId}/accounts/{accountId}/validate":
     get:
       summary: Validate the Recipient Bank Account can be used for transfer or deposit
@@ -1938,6 +2237,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/AccountIdParam"
       responses:
@@ -1963,8 +2263,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.accountId: "method.request.path.accountId"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/users/{userId}/accounts":
     get:
       summary: Retrieve a list of Recipient Bank Accounts
@@ -1978,6 +2284,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -1998,7 +2305,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
+          403:
+            statusCode: 403
     post:
       summary: Create a Recipient Bank Account
       description: Creates a Recipient Bank Account for a user. You *must* call this endpoint twice
@@ -2013,6 +2326,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: x-cf-mfa-followon-id
           in: header
@@ -2049,7 +2363,7 @@ paths:
         description: New account data
         required: true
       responses:
-        '200':
+        '201':
           description: Users's Account entity.
           content:
             application/hal+json:
@@ -2071,10 +2385,20 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.x-cf-mfa-followon-id: "method.request.path.x-cf-mfa-followon-id"
           integration.request.path.x-cf-mfa-device-id: "method.request.path.x-cf-mfa-device-id"
           integration.request.path.x-cf-mfa-code: "method.request.path.x-cf-mfa-code"
+        responses:
+          201:
+            statusCode: 201
+          401:
+            statusCode: 401
+          403:
+            statusCode: 403
+          422:
+            statusCode: 422
   "/countryAccountConfigs/{countryId}":
     get:
       summary: Recipient Bank Account configuration per Country
@@ -2092,6 +2416,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/CountryIdParam"
         - $ref: "#/components/parameters/CurrencyQueryParam"
       responses:
@@ -2117,8 +2442,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.countryId: "method.request.path.countryId"
           integration.request.querystring.currency: "method.request.querystring.currency"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/accountsBankLookup":
     post:
       summary: Retrieve Bank Details for provided Account details
@@ -2130,6 +2461,8 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
+        - $ref: "#/components/parameters/ContentTypeHeaderParam"
       tags:
         - Recipient Bank Accounts
       requestBody:
@@ -2194,6 +2527,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Content-Type: "method.request.header.Content-Type"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/requireBeneficiaryVerification":
     post:
       summary: Retrieve a Beneficiary verification status
@@ -2205,6 +2545,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Recipient Bank Accounts
       requestBody:
@@ -2232,6 +2573,10 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/automaticQuickTrades":
     post:
       summary: Create an Automatic Quick Trade
@@ -2245,6 +2590,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       requestBody:
         content:
@@ -2281,7 +2627,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
+          403:
+            statusCode: 403
     get:
       summary: Retrieve a list of Automatic Quick Trades
       description: Retrieves a collection of Automatic Quick Trades for a user.
@@ -2294,6 +2646,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: status
           in: query
@@ -2345,8 +2698,12 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.status: "method.request.querystring.status"
+        responses:
+          200:
+            statusCode: 200
   "/automaticQuickTradesStatuses":
     get:
       summary: Retrieve a list of Automatic Quick Trade Statuses
@@ -2360,6 +2717,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: filter
           in: query
           description: An optional filter. Currently accepts `open` which returns open
@@ -2392,7 +2750,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.querystring.filter: "method.request.querystring.filter"
+        responses:
+          200:
+            statusCode: 200
   "/automaticQuickTradesStatuses/{statusId}":
     get:
       summary: Retrieve an Automatic Quick Trade Status
@@ -2406,6 +2768,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: statusId
           in: path
           description: The Automatic Quick Trade Status ID.
@@ -2435,7 +2798,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.statusId: "method.request.path.statusId"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/automaticQuickTrades/{id}":
     get:
       summary: Retrieve an Automatic Quick Trade
@@ -2449,6 +2816,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: id
           in: path
@@ -2476,8 +2844,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/transactionTimes/deposit/{currencyCode}":
     get:
       summary: Retrieve a Deposit Transaction Time
@@ -2491,6 +2865,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
       responses:
@@ -2517,8 +2892,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/transactionTimes/transfer/{currencyCode}":
     get:
       summary: Retrieve a Transfer Transaction Time
@@ -2532,6 +2913,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
       responses:
@@ -2558,8 +2940,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/transactionTimes/combined/{fromCurrencyCode}/{transferType}/{toCurrencyCode}":
     get:
       summary: Retrieve a Combined Transaction Time (Deposit + Transfer)
@@ -2573,6 +2961,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: fromCurrencyCode
           in: path
@@ -2621,10 +3010,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.fromCurrencyCode: "method.request.path.fromCurrencyCode"
           integration.request.path.transferType: "method.request.path.transferType"
           integration.request.path.toCurrencyCode: "method.request.path.toCurrencyCode"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/onlineBanks":
     get:
       summary: Retrieve a list of Online Banks
@@ -2636,6 +3031,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
       tags:
         - Depositing
       responses:
@@ -2660,6 +3056,10 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
+        responses:
+          200:
+            statusCode: 200
   "/onlineBanks/{id}":
     get:
       summary: Retrieve an Online Bank
@@ -2671,6 +3071,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: id
           in: path
           description: The Online Bank ID.
@@ -2703,7 +3104,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/countryActivationConfigs/{countryId}":
     get:
       summary: Retrieve an object containing the fields required for customer activation
@@ -2717,6 +3124,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - name: countryId
           in: path
           description: country ID.
@@ -2742,7 +3150,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.countryId: "method.request.path.countryId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/paymentMethods/{currencyCode}":
     get:
       summary: Retrieves a list of Payment Methods for a provided currency
@@ -2758,12 +3172,13 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
         - name: amount
           in: query
           description: The amount to be deposited.
-          required: true
+          required: false
           example: 15000
           schema:
             type: integer
@@ -2790,9 +3205,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
           integration.request.querystring.amount: "method.request.querystring.amount"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/paymentMethods/{currencyCode}/{transferCurrency}":
     get:
       summary: Retrieves a list of Payment Methods for a provided currency corridor
@@ -2806,6 +3225,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/CurrencyCodeParam"
         - name: transferCurrency
@@ -2819,7 +3239,7 @@ paths:
         - name: amount
           in: query
           description: The amount that will be deposited.
-          required: true
+          required: false
           schema:
             type: string
       responses:
@@ -2845,10 +3265,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.currencyCode: "method.request.path.currencyCode"
           integration.request.path.transferCurrency: "method.request.path.transferCurrency"
           integration.request.querystring.amount: "method.request.querystring.amount"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/transfers/{transferId}/approvers":
     get:
       summary: Retrieve a list of Transfer Approvers
@@ -2862,6 +3286,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/TransferOutIdParam"
       responses:
@@ -2886,8 +3311,12 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.transferId: "method.request.path.transferId"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/transfers/{transferId}/notify":
     post:
       summary: Send notifications to Transfer Approvers
@@ -2901,6 +3330,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/TransferOutIdParam"
       requestBody:
@@ -2942,8 +3372,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.transferId: "method.request.path.transferId"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}/namedDepositors":
     post:
       summary: Create a Named Depositor
@@ -2959,6 +3397,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       requestBody:
         $ref: "#/components/requestBodies/NamedDepositorPayload"
@@ -2981,7 +3420,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          201:
+            statusCode: 201
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a list of Named Depositors
       description: Retrieves a collection of active Named Depositors for a user.
@@ -2994,6 +3439,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -3014,7 +3460,13 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/users/{userId}/namedDepositors/fields":
     get:
       summary: Retrieve a Named Depositor Fields Collection
@@ -3028,6 +3480,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
       responses:
         '200':
@@ -3049,7 +3502,11 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
+        responses:
+          200:
+            statusCode: 200
   "/users/{userId}/namedDepositors/{id}":
     put:
       summary: Update a Named Depositor
@@ -3063,6 +3520,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/NamedDepositorIdParam"
       requestBody:
@@ -3088,8 +3546,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a Named Depositor
       description: Retrieves a Named Depositor entity.
@@ -3102,6 +3568,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/NamedDepositorIdParam"
       responses:
@@ -3125,8 +3592,16 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
     delete:
       summary: Delete a Named Depositor
       description: Deletes a Named Depositor entity.
@@ -3139,6 +3614,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/NamedDepositorIdParam"
       responses:
@@ -3156,8 +3632,14 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.id: "method.request.path.id"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
   "/users/{userId}/wallet/transactions":
     get:
       summary: Retrieve a list of Wallet Transactions
@@ -3171,6 +3653,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/WalletTransactionsContextParam"
         - $ref: "#/components/parameters/WalletTransactionsCurrencyParam"
@@ -3209,6 +3692,7 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.context: "method.request.querystring.context"
           integration.request.querystring.currency: "method.request.querystring.currency"
@@ -3218,6 +3702,11 @@ paths:
           integration.request.querystring.page_size: "method.request.querystring.page_size"
           integration.request.querystring.order_by: "method.request.querystring.order_by"
           integration.request.querystring.order_dir: "method.request.querystring.order_dir"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
   "/users/{userId}/wallet/transactions/{transactionId}":
     get:
       summary: Retrieve a Wallet Transaction
@@ -3231,6 +3720,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - name: transactionId
           in: path
@@ -3239,6 +3729,7 @@ paths:
           schema:
             type: integer
         - $ref: "#/components/parameters/WalletTransactionsContextParam"
+        - $ref: "#/components/parameters/WalletTransactionsCurrencyParam"
       responses:
         '200':
           description: Wallet Transaction entity.
@@ -3266,8 +3757,18 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.transactionId: "method.request.path.transactionId"
+          integration.request.querystring.context: "method.request.querystring.context"
+          integration.request.querystring.currency: "method.request.querystring.currency"
+        responses:
+          200:
+            statusCode: 200
+          404:
+            statusCode: 404
+          422:
+            statusCode: 422
   "/users/{userId}/wallet/transactions/export":
     get:
       summary: Export a list of Wallet Transactions
@@ -3281,6 +3782,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
+        - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
         - $ref: "#/components/parameters/UserIdParam"
         - $ref: "#/components/parameters/WalletTransactionsFormatParam"
         - $ref: "#/components/parameters/WalletTransactionsContextParam"
@@ -3316,6 +3818,7 @@ paths:
         requestParameters:
           integration.request.header.Authorization: "method.request.header.Authorization"
           integration.request.header.xsapi-gateway-key: "stageVariables.gatewayKey"
+          integration.request.header.Accept-Language: "method.request.header.Accept-Language"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.querystring.format: "method.request.querystring.format"
           integration.request.querystring.context: "method.request.querystring.context"
@@ -3326,6 +3829,11 @@ paths:
           integration.request.querystring.page_size: "method.request.querystring.page_size"
           integration.request.querystring.order_by: "method.request.querystring.order_by"
           integration.request.querystring.order_dir: "method.request.querystring.order_dir"
+        responses:
+          200:
+            statusCode: 200
+          422:
+            statusCode: 422
 components:
   parameters:
     AccountIdParam:
@@ -3350,6 +3858,22 @@ components:
       required: true
       schema:
         type: string
+    ContentTypeHeaderParam:
+      in: header
+      name: Content-Type
+      description: Indicates the type of data sent.
+      required: true
+      schema:
+        type: string
+        example: multipart/form-data
+    AcceptLanguageHeaderParam:
+      in: header
+      name: Accept-Language
+      description: Indicates the preferred locale variant.
+      required: false
+      schema:
+        type: string
+        example: multipart/form-data
     UserIdParam:
       name: userId
       in: path
@@ -3380,6 +3904,15 @@ components:
       in: path
       description: The 3 character currency code in ISO 4217 format.
       required: true
+      schema:
+        type: string
+        example: EUR
+        pattern: "[A-Z]{3}"
+    CurrencyCodeOptionalQueryParam:
+      name: currencyCode
+      in: query
+      description: The 3 character currency code in ISO 4217 format.
+      required: false
       schema:
         type: string
         example: EUR
@@ -3451,12 +3984,12 @@ components:
       name: context
       in: query
       description: The context in which transactions are returned - currently only
-        'statements'.
+        'statement'.
       required: true
       schema:
         type: string
         enum:
-          - statements
+          - statement
     WalletTransactionsCurrencyParam:
       name: currency
       in: query
