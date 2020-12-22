@@ -1935,14 +1935,7 @@ paths:
         - $ref: "#/components/parameters/AuthorisationHeaderParam"
         - $ref: "#/components/parameters/ApiKeyHeaderParam"
         - $ref: "#/components/parameters/AcceptLanguageHeaderParam"
-        - name: currencyCode
-          in: query
-          description: The 3 character currency code in ISO 4217 format.
-          required: false
-          schema:
-            type: string
-            example: EUR
-            pattern: "[A-Z]{3}"
+        - $ref: "#/components/parameters/CurrencyCodeOptionalQueryParam"
       tags:
         - Transfer Out
       responses:
