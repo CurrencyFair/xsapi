@@ -24,7 +24,7 @@ info:
     The sandbox servers are assigned to users when they register as an API partner.
 
     The following headers can be attached to HTTPS calls to our API:
-      - `x-api-key: <secret provided by CurrencyFair>` - must always be sent in every request, grants access to the API (authentication is performed separately).
+      - `x-api-key: <secret provided by CurrencyFair>` - must be sent in every request, grants access to the API (authentication is performed separately).
       - `Authentication: Bearer <api_token>` - must be set to authenticate the call. Read more in the [Authentication](#section/Authentication) section.
       - `Content-Type: application/json` - must be set on POST/PUT/PATCH calls when a JSON body payload is sent.
       - `Accept-Language: <two_letter_language_code>` - to set the language. Defaults to `en` if not provided. Currently supported languages: `en`, `fr`, `de`.
@@ -446,6 +446,8 @@ paths:
                   summary: Countries collection
                   value:
                     $ref: "resources/examples/countries/countriesCollection.json"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -463,6 +465,8 @@ paths:
         responses:
           200:
             statusCode: 200
+          422:
+            statusCode: 422
   "/countries/{id}":
     get:
       summary: Retrieve a Country
@@ -2610,6 +2614,8 @@ paths:
                 $ref: "#/components/schemas/AutomaticQuickTradesEntity"
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -2627,6 +2633,8 @@ paths:
             statusCode: 200
           403:
             statusCode: 403
+          422:
+            statusCode: 422
     get:
       summary: Retrieve a list of Automatic Quick Trades
       description: Retrieves a collection of Automatic Quick Trades for a user.
@@ -3866,7 +3874,7 @@ components:
       required: false
       schema:
         type: string
-        example: multipart/form-data
+        example: en
     UserIdParam:
       name: userId
       in: path
