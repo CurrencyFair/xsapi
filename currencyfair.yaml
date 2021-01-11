@@ -35,6 +35,18 @@ info:
     have its own long-lived Authorization Code that allows it to authenticate using the
     [authentication endpoint](#tag/Authentication).
 
+    # Getting Started
+    ### How do I register with CurrencyFair?
+    Please reach out to our Business Development Lead [Brian Bennett](mailto:brianbennett@currencyfair.com?subject=CurrencyFair%20API%20enquiry).
+    Brian will answer any initial questions you may have, and assist you with registering for the API.
+
+    ### How will I get the API keys?
+    Our Business Development team will liaise with our engineering team who will then securely provide you with the requisite API keys.
+
+    ### Who will provide support?
+    Our engineering team will be on hand to support you with any technical issues. Our Business Development team
+    will be able to assist you with any non-technical issues or concerns.
+
     <SecurityDefinitions />
 
     **The Authorization Code must be stored in secure location, and never displayed to the public**.
