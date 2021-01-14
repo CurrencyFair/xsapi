@@ -343,8 +343,10 @@ paths:
                   summary: Successful authorization
                   value:
                     $ref: "resources/examples/oauth/oAuthResponse.json"
-        '401':
+        '400':
           $ref: "#/components/responses/Unauthorized"
+        '401':
+          $ref: "#/components/responses/UnauthorizedMfaRequired"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -361,6 +363,8 @@ paths:
         responses:
           200:
             statusCode: 200
+          400:
+            statusCode: 400
           401:
             statusCode: 401
   "/whoami":
@@ -390,6 +394,13 @@ paths:
                   description: Whoami Entity
                   value:
                     $ref: "resources/examples/whoami/whoamiEntity.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
@@ -410,6 +421,8 @@ paths:
             statusCode: 200
           401:
             statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
   "/countries":
@@ -450,6 +463,15 @@ paths:
                   summary: Countries collection
                   value:
                     $ref: "resources/examples/countries/countriesCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
@@ -471,6 +493,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/countries/{id}":
@@ -512,6 +540,15 @@ paths:
                   summary: Country entity
                   value:
                     $ref: "resources/examples/countries/countriesEntity.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -534,6 +571,12 @@ paths:
             responseParameters:
               method.response.header.Vary: "integration.response.header.Vary"
               method.response.header.Cache-Control: "integration.response.header.Cache-Control"
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/currencies":
@@ -588,6 +631,15 @@ paths:
                   summary: Currencies collection
                   value:
                     $ref: "resources/examples/currencies/currenciesCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
@@ -611,6 +663,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/currencies/{currencyCode}":
@@ -640,6 +698,15 @@ paths:
                   summary: Currency entity
                   value:
                     $ref: "resources/examples/currencies/currenciesEntity.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -659,6 +726,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/comparisonQuotes":
@@ -693,6 +766,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ComparisonQuotesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -713,6 +795,12 @@ paths:
         responses:
           201:
             statusCode: 201
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -739,6 +827,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/UsersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -758,6 +855,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/summaries":
@@ -789,6 +892,15 @@ paths:
                   summary: Collection of Summary entities
                   value:
                     - $ref: "resources/examples/summaries/summariesCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -806,6 +918,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/summaries/{currencyCode}":
     get:
       summary: Retrieve a Summary
@@ -836,6 +954,15 @@ paths:
                   description: Summaries entity
                   value:
                     - $ref: "resources/examples/summaries/summariesEntity.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -856,6 +983,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/quicktradeQuotes":
@@ -885,6 +1018,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/QuickTradeQuotesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -905,6 +1047,12 @@ paths:
         responses:
           201:
             statusCode: 201
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -941,6 +1089,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/QuickTradeOrdersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -961,6 +1118,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -1029,6 +1192,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/OrdersCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -1050,6 +1222,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/orders/{orderId}":
     get:
       summary: Retrieve an Order
@@ -1073,6 +1251,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/OrdersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -1093,6 +1280,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
     patch:
@@ -1123,6 +1316,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/OrdersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -1145,6 +1347,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -1173,6 +1381,15 @@ paths:
       responses:
         '204':
           description: Order successfully cancelled.
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -1195,6 +1412,12 @@ paths:
         responses:
           204:
             statusCode: 204
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -1222,6 +1445,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/OrdersHistoryEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -1242,6 +1474,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/marketplaces":
@@ -1271,6 +1509,15 @@ paths:
                     $ref: 'resources/examples/marketPlaces/marketPlacesCollection.json'
               schema:
                 $ref: "#/components/schemas/MarketplacesCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1287,6 +1534,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/marketplaces/{currencyFrom}/{currencyTo}":
     get:
       summary: Retrieve Marketplace information for a currency pair
@@ -1318,6 +1571,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/MarketplacesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -1338,6 +1600,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/marketplaceOrders":
@@ -1368,6 +1636,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/OrdersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -1388,6 +1665,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -1434,6 +1717,15 @@ paths:
                     "$ref": "resources/examples/deposits/depositEntityResponse.json"
               schema:
                 $ref: "#/components/schemas/DepositsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -1453,6 +1745,12 @@ paths:
         responses:
           201:
             statusCode: 201
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
     get:
@@ -1478,6 +1776,13 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/DepositsCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
       x-amazon-apigateway-request-validator: params-only
@@ -1500,6 +1805,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
   "/users/{userId}/deposits/{id}":
@@ -1537,6 +1846,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/DepositsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -1559,6 +1877,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -1591,10 +1915,17 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/DepositsEntity"
-        '404':
-          $ref: "#/components/responses/NotFound"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
+        '404':
+          $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1613,10 +1944,14 @@ paths:
         responses:
           200:
             statusCode: 200
-          404:
-            statusCode: 404
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          404:
+            statusCode: 404
   "/currencyfair/accounts":
     get:
       summary: Retrieve a list of CurrencyFair Bank Accounts
@@ -1643,6 +1978,15 @@ paths:
                     $ref: 'resources/examples/currencyFairBankAccounts/currencyFairBankAccountCollection.json'
               schema:
                 $ref: "#/components/schemas/CurrencyfairAccountsCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1659,6 +2003,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/currencyfair/accounts/{currencyCode}":
     get:
       summary: Retrieve a CurrencyFair Bank Account
@@ -1686,6 +2036,15 @@ paths:
                     $ref: 'resources/examples/currencyFairBankAccounts/currencyFairBankAccountEntity.typical.json'
               schema:
                 $ref: "#/components/schemas/CurrencyfairAccountsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -1705,6 +2064,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/transfers":
@@ -1748,6 +2113,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/TransfersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -1767,6 +2141,12 @@ paths:
         responses:
           201:
             statusCode: 201
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
     get:
@@ -1801,6 +2181,15 @@ paths:
               example:
                 value:
                   $ref: resources/examples/transfers/transfersCollection.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -1821,6 +2210,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/transfers/{transferId}":
     get:
       summary: Retrieve a Transfer Out
@@ -1859,6 +2254,15 @@ paths:
                     the Multi User functionality.
                   value:
                     $ref: resources/examples/transfers/transferEntity.pending.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -1879,6 +2283,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
     patch:
@@ -1925,6 +2335,13 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/TransfersEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
@@ -1945,6 +2362,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
   "/transferTypes":
@@ -1973,6 +2394,15 @@ paths:
                   summary: Transfer Types collection
                   value:
                     - $ref: "resources/examples/transferTypes/transferTypesCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1989,6 +2419,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/transferPurposes":
     get:
       summary: Retrieve a list of Transfer Purposes
@@ -2020,6 +2456,15 @@ paths:
                   summary: Transfer Purposes collection for specific currency
                   value:
                     - $ref: "resources/examples/transferPurposes/transferPurposesForCurrencyCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -2039,6 +2484,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/transferFees":
@@ -2075,6 +2526,15 @@ paths:
                   summary: Transfer Fees collection
                   value:
                     - $ref: "resources/examples/transferFees/transferFeesCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -2093,6 +2553,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/rewards/transfers/detail":
     get:
       summary: Retrieve a list of Free Transfer Reward details for a user
@@ -2123,6 +2589,15 @@ paths:
                   description: Free Transfer Rewards collection
                   value:
                     - "$ref": resources/examples/rewards/transfers/details/collection.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2140,6 +2615,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/accounts/{accountId}":
     get:
       summary: Retrieve a Recipient Bank Account
@@ -2163,6 +2644,13 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/UsersAccountsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
         '404':
@@ -2187,6 +2675,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
           404:
@@ -2211,6 +2703,13 @@ paths:
       responses:
         '204':
           description: Account deleted
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
         '404':
@@ -2235,6 +2734,10 @@ paths:
         responses:
           204:
             statusCode: 204
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
           404:
@@ -2272,6 +2775,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/UsersAccountsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -2292,6 +2804,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/users/{userId}/accounts/{accountId}/validate":
@@ -2318,6 +2836,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AccountValidationResponse"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           description: Account cannot be used.
           content:
@@ -2342,6 +2869,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/users/{userId}/accounts":
@@ -2366,6 +2899,13 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/UsersAccountsCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
       x-amazon-apigateway-integration:
@@ -2385,6 +2925,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
     post:
@@ -2506,6 +3050,15 @@ paths:
               example:
                 value:
                   $ref: resources/examples/countryAccountConfigs/countryAccountConfigsEntity.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-request-validator: params-only
@@ -2527,6 +3080,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/accountsBankLookup":
@@ -2585,6 +3144,15 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AccountInformation"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           description: The error response
           content:
@@ -2613,6 +3181,14 @@ paths:
         responses:
           200:
             statusCode: 200
+          400:
+            statusCode: 400
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/requireBeneficiaryVerification":
@@ -2644,6 +3220,15 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/RequireBeneficiaryVerificationEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -2660,6 +3245,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/automaticQuickTrades":
     post:
       summary: Create an Automatic Quick Trade
@@ -2698,6 +3289,13 @@ paths:
                     "$ref": "resources/examples/aqt/createUserAqtResponse.json"
               schema:
                 $ref: "#/components/schemas/AutomaticQuickTradesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
         '422':
@@ -2719,6 +3317,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
           422:
@@ -2776,6 +3378,14 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/AutomaticQuickTradesCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -2795,6 +3405,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/automaticQuickTradesStatuses":
     get:
       summary: Retrieve a list of Automatic Quick Trade Statuses
@@ -2830,6 +3446,15 @@ paths:
                     "$ref": "resources/examples/aqtStatuses/actStatusesCollection.json"
               schema:
                 $ref: "#/components/schemas/AutomaticQuickTradesStatusesCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -2848,6 +3473,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/automaticQuickTradesStatuses/{statusId}":
     get:
       summary: Retrieve an Automatic Quick Trade Status
@@ -2881,6 +3512,14 @@ paths:
                     "$ref": "resources/examples/aqtStatuses/actStatusEntity.json"
               schema:
                 $ref: "#/components/schemas/AutomaticQuickTradesStatusesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2898,6 +3537,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/automaticQuickTrades/{id}":
     get:
       summary: Retrieve an Automatic Quick Trade
@@ -2927,6 +3572,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/AutomaticQuickTradesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -2947,6 +3601,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/transactionTimes/deposit/{currencyCode}":
@@ -2977,6 +3637,15 @@ paths:
                     "$ref": "resources/examples/transactionTimes/transactionTimeEntity.json"
               schema:
                 $ref: "#/components/schemas/TransactionTimesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -2997,6 +3666,10 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           404:
             statusCode: 404
   "/users/{userId}/transactionTimes/transfer/{currencyCode}":
@@ -3027,6 +3700,15 @@ paths:
                     "$ref": "resources/examples/transactionTimes/transactionTimeEntity.json"
               schema:
                 $ref: "#/components/schemas/TransactionTimesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -3047,6 +3729,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/transactionTimes/combined/{fromCurrencyCode}/{transferType}/{toCurrencyCode}":
@@ -3099,6 +3787,15 @@ paths:
                     "$ref": "resources/examples/transactionTimes/transactionTimeCombinedEntity.json"
               schema:
                 $ref: "#/components/schemas/TransactionTimesEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -3121,6 +3818,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/onlineBanks":
@@ -3149,6 +3852,14 @@ paths:
                   description: Online Banks Collection
                   value:
                     - "$ref": resources/examples/onlineBanks/onlineBanksCollection.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3165,6 +3876,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/onlineBanks/{id}":
     get:
       summary: Retrieve an Online Bank
@@ -3197,6 +3914,15 @@ paths:
                   description: Online Banks entity
                   value:
                     - "$ref": resources/examples/onlineBanks/onlineBankEntity.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -3216,6 +3942,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/countryActivationConfigs/{countryId}":
@@ -3245,6 +3977,14 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/CountryActivationConfigsObject"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -3264,6 +4004,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/paymentMethods/{currencyCode}":
@@ -3303,6 +4049,15 @@ paths:
                     $ref: "resources/examples/paymentMethods/paymentMethodsCollectionForCurrency.json"
               schema:
                 $ref: "#/components/schemas/PaymentMethodsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -3323,6 +4078,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/paymentMethods/{currencyCode}/{transferCurrency}":
     get:
       summary: Retrieves a list of Payment Methods for a provided currency corridor
@@ -3365,6 +4126,15 @@ paths:
                     $ref: "resources/examples/paymentMethods/paymentMethodsCollection.json"
               schema:
                 $ref: "#/components/schemas/PaymentMethodsEntity"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -3386,6 +4156,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/transfers/{transferId}/approvers":
     get:
       summary: Retrieve a list of Transfer Approvers
@@ -3414,6 +4190,15 @@ paths:
                   summary: Transfer Approvers collection
                   value:
                     $ref: "resources/examples/transferApprovers/transferApproversCollection.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3432,6 +4217,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/transfers/{transferId}/notify":
     post:
       summary: Send notifications to Transfer Approvers
@@ -3473,6 +4264,14 @@ paths:
                   success:
                     type: boolean
                     example: true
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -3495,6 +4294,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -3525,6 +4330,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/NamedDepositor"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -3544,6 +4358,12 @@ paths:
         responses:
           201:
             statusCode: 201
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
     get:
@@ -3567,6 +4387,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/NamedDepositorsCollection"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-integration:
@@ -3586,6 +4415,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/users/{userId}/namedDepositors/fields":
@@ -3613,6 +4448,15 @@ paths:
               example:
                 value:
                   $ref: resources/examples/namedDepositors/fieldsCollection.json
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3630,6 +4474,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
   "/users/{userId}/namedDepositors/{id}":
     put:
       summary: Update a Named Depositor
@@ -3655,6 +4505,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/NamedDepositor"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -3677,6 +4536,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -3703,6 +4568,15 @@ paths:
             application/hal+json:
               schema:
                 $ref: "#/components/schemas/NamedDepositor"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -3725,6 +4599,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -3747,6 +4627,14 @@ paths:
       responses:
         '204':
           description: Upon successful deletion.
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
       x-amazon-apigateway-integration:
@@ -3767,6 +4655,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
   "/users/{userId}/wallet/transactions":
@@ -3808,6 +4702,15 @@ paths:
                   summary: Empty Wallet Transactions collection
                   value:
                     - $ref: "resources/examples/transactions/emptyList.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
@@ -3836,6 +4739,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
   "/users/{userId}/wallet/transactions/{transactionId}":
@@ -3873,6 +4782,15 @@ paths:
                   summary: Wallet Transactions entity
                   value:
                     - $ref: "resources/examples/transactions/transactionsEntity.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
         '422':
@@ -3898,6 +4816,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           404:
             statusCode: 404
           422:
@@ -3938,6 +4862,15 @@ paths:
                   summary: Wallet Transactions Export entity
                   value:
                     - $ref: "resources/examples/transactions/transactionsExport.json"
+        '401':
+          description: Authorisation error.
+          headers:
+            WWW-Authenticate:
+              schema:
+                type: string
+              description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
+        '403':
+          $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
       x-amazon-apigateway-request-validator: params-only
@@ -3967,6 +4900,12 @@ paths:
         responses:
           200:
             statusCode: 200
+          401:
+            statusCode: 401
+            responseParameters:
+              method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
+          403:
+            statusCode: 403
           422:
             statusCode: 422
 components:
@@ -4187,6 +5126,12 @@ components:
           schema:
             $ref: "#/components/schemas/ApiForbiddenError"
     Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ApiUnauthorizedError"
+    UnauthorizedMfaRequired:
       description: Unauthorized
       content:
         application/problem+json:
