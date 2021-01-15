@@ -5442,7 +5442,7 @@ components:
           schema:
             $ref: "#/components/schemas/ApiConflictError"
     TooManyRequests:
-      description: Indicates too many requests have been sent.
+      description: Too many requests.
       content:
         application/problem+json:
           schema:
