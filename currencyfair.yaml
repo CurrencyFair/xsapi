@@ -5442,7 +5442,7 @@ components:
           schema:
             $ref: "#/components/schemas/ApiConflictError"
     TooManyRequests:
-      description: Profile not activated.
+      description: Indicates too many requests have been sent.
       content:
         application/problem+json:
           schema:
