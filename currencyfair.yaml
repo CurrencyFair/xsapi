@@ -347,6 +347,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         '401':
           $ref: "#/components/responses/UnauthorizedMfaRequired"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -367,6 +369,8 @@ paths:
             statusCode: 400
           401:
             statusCode: 401
+          429:
+            statusCode: 429
   "/whoami":
     get:
       summary: Who Am I
@@ -403,6 +407,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -425,6 +431,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/countries":
     get:
       summary: Retrieve a list of Countries
@@ -474,6 +482,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -501,6 +511,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/countries/{id}":
     get:
       summary: Retrieve a Country
@@ -551,6 +563,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -579,6 +593,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/currencies":
     get:
       summary: Retrieve a list of Currencies
@@ -642,6 +658,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -671,6 +689,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/currencies/{currencyCode}":
     get:
       summary: Retrieve a Currency
@@ -709,6 +729,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -734,6 +756,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/comparisonQuotes":
     post:
       summary: Retrieve a Comparison Quote
@@ -779,6 +803,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -805,6 +831,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}":
     get:
       summary: Retrieve a User
@@ -838,6 +866,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -863,6 +893,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/summaries":
     get:
       summary: Retrieve a list of Summaries
@@ -901,6 +933,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -924,6 +958,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/summaries/{currencyCode}":
     get:
       summary: Retrieve a Summary
@@ -965,6 +1001,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -991,6 +1029,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/quicktradeQuotes":
     post:
       summary: Return QuickTrade Quote
@@ -1031,6 +1071,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -1057,6 +1099,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/quicktradeOrders":
     post:
       summary: Create a QuickTrade Order
@@ -1102,6 +1146,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -1128,6 +1174,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/orders":
     get:
       summary: Retrieve a list of User Orders
@@ -1201,6 +1249,10 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '409':
+          $ref: "#/components/responses/RequestConflictWithCurrentState"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -1228,6 +1280,10 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          409:
+            statusCode: 409
+          429:
+            statusCode: 429
   "/users/{userId}/orders/{orderId}":
     get:
       summary: Retrieve an Order
@@ -1262,6 +1318,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1288,6 +1346,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
     patch:
       summary: Update an open Order rate
       description: Updates an open Order rate for a user.
@@ -1329,6 +1389,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "PATCH"
@@ -1357,6 +1419,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     delete:
       summary: Cancel an Open Order
       description: Cancels an Open Order for a user.
@@ -1394,6 +1458,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "DELETE"
@@ -1422,6 +1488,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/orders/{orderId}/history":
     get:
       summary: Retrieve Order History
@@ -1456,6 +1524,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1482,6 +1552,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/marketplaces":
     get:
       summary: Retrieve Currency Marketplace Information
@@ -1518,6 +1590,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1540,6 +1614,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/marketplaces/{currencyFrom}/{currencyTo}":
     get:
       summary: Retrieve Marketplace information for a currency pair
@@ -1582,6 +1658,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1608,6 +1686,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/marketplaceOrders":
     post:
       summary: Create Marketplace Order
@@ -1649,6 +1729,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -1675,6 +1757,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/deposits":
     post:
       summary: Create a Deposit
@@ -1728,6 +1812,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -1753,6 +1839,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a list of Deposits
       description: Retrieves a collection of Deposits for a user.
@@ -1785,6 +1873,10 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
+        '409':
+          $ref: "#/components/responses/RequestConflictWithCurrentState"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -1811,6 +1903,10 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          409:
+            statusCode: 409
+          429:
+            statusCode: 429
   "/users/{userId}/deposits/{id}":
     patch:
       summary: Update a Deposit's values
@@ -1859,6 +1955,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "PATCH"
@@ -1887,6 +1985,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a Deposit
       description: Retrieves a Deposit for a user.
@@ -1926,6 +2026,8 @@ paths:
           $ref: "#/components/responses/ProfileNotActivated"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -1952,6 +2054,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/currencyfair/accounts":
     get:
       summary: Retrieve a list of CurrencyFair Bank Accounts
@@ -1987,6 +2091,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2009,6 +2115,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/currencyfair/accounts/{currencyCode}":
     get:
       summary: Retrieve a CurrencyFair Bank Account
@@ -2047,6 +2155,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2072,6 +2182,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/transfers":
     post:
       summary: Create a Transfer Out
@@ -2124,6 +2236,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -2149,6 +2263,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a list Transfer Outs
       description: Retrieves a collection of Transfer Out entities for a user, paginated to
@@ -2190,6 +2306,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -2216,6 +2334,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/transfers/{transferId}":
     get:
       summary: Retrieve a Transfer Out
@@ -2265,6 +2385,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2291,6 +2413,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
     patch:
       summary: Update an existing Transfer
       description: Partially update the Transfer Out for a user. Allows updating the
@@ -2344,6 +2468,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "PATCH"
@@ -2368,6 +2494,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/transferTypes":
     get:
       summary: Retrieve a list of Transfer Types
@@ -2403,6 +2531,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2425,6 +2555,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/transferPurposes":
     get:
       summary: Retrieve a list of Transfer Purposes
@@ -2467,6 +2599,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2492,6 +2626,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/transferFees":
     get:
       summary: Retrieve a list of Transfer Fees
@@ -2535,6 +2671,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -2559,6 +2697,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/rewards/transfers/detail":
     get:
       summary: Retrieve a list of Free Transfer Reward details for a user
@@ -2598,6 +2738,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2621,6 +2763,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/accounts/{accountId}":
     get:
       summary: Retrieve a Recipient Bank Account
@@ -2657,6 +2801,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2685,6 +2831,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     delete:
       summary: Delete a Recipient Bank Account
       description: Delete a Recipient Bank Account for a user.
@@ -2716,6 +2864,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "DELETE"
@@ -2744,6 +2894,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     patch:
       summary: Update a Recipient Bank Account's values
       description: |
@@ -2786,6 +2938,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "PATCH"
@@ -2812,6 +2966,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/accounts/{accountId}/validate":
     get:
       summary: Validate the Recipient Bank Account can be used for transfer or deposit
@@ -2851,6 +3007,8 @@ paths:
             application/problem+json:
               schema:
                 $ref: "#/components/schemas/ApiUnprocessableEntityError"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2877,6 +3035,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/accounts":
     get:
       summary: Retrieve a list of Recipient Bank Accounts
@@ -2908,6 +3068,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/ProfileNotActivated"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -2931,6 +3093,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
     post:
       summary: Create a Recipient Bank Account
       description: Creates a Recipient Bank Account for a user. You *must* call this endpoint twice
@@ -2994,6 +3158,8 @@ paths:
           $ref: "#/components/responses/ProfileNotActivated"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -3020,6 +3186,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/countryAccountConfigs/{countryId}":
     get:
       summary: Recipient Bank Account configuration per Country
@@ -3061,6 +3229,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -3088,6 +3258,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/accountsBankLookup":
     post:
       summary: Retrieve Bank Details for provided Account details
@@ -3164,6 +3336,8 @@ paths:
                   summary: Invalid IBAN response
                   value:
                     $ref: "resources/examples/bankAccountLookup/invalidIban422Response.json"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -3191,6 +3365,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/requireBeneficiaryVerification":
     post:
       summary: Retrieve a Beneficiary verification status
@@ -3229,6 +3405,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -3251,6 +3429,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/automaticQuickTrades":
     post:
       summary: Create an Automatic Quick Trade
@@ -3300,6 +3480,8 @@ paths:
           $ref: "#/components/responses/ProfileNotActivated"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -3325,6 +3507,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a list of Automatic Quick Trades
       description: Retrieves a collection of Automatic Quick Trades for a user.
@@ -3386,6 +3570,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -3411,6 +3597,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/automaticQuickTradesStatuses":
     get:
       summary: Retrieve a list of Automatic Quick Trade Statuses
@@ -3455,6 +3643,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -3479,6 +3669,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/automaticQuickTradesStatuses/{statusId}":
     get:
       summary: Retrieve an Automatic Quick Trade Status
@@ -3520,6 +3712,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3543,6 +3737,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/automaticQuickTrades/{id}":
     get:
       summary: Retrieve an Automatic Quick Trade
@@ -3583,6 +3779,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3609,6 +3807,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/transactionTimes/deposit/{currencyCode}":
     get:
       summary: Retrieve a Deposit Transaction Time
@@ -3648,6 +3848,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3672,6 +3874,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/transactionTimes/transfer/{currencyCode}":
     get:
       summary: Retrieve a Transfer Transaction Time
@@ -3711,6 +3915,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3737,6 +3943,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/transactionTimes/combined/{fromCurrencyCode}/{transferType}/{toCurrencyCode}":
     get:
       summary: Retrieve a Combined Transaction Time (Deposit + Transfer)
@@ -3798,6 +4006,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3826,6 +4036,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/onlineBanks":
     get:
       summary: Retrieve a list of Online Banks
@@ -3860,6 +4072,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3882,6 +4096,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/onlineBanks/{id}":
     get:
       summary: Retrieve an Online Bank
@@ -3925,6 +4141,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -3950,6 +4168,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/countryActivationConfigs/{countryId}":
     get:
       summary: Retrieve an object containing the fields required for customer activation
@@ -3987,6 +4207,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -4012,6 +4234,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/paymentMethods/{currencyCode}":
     get:
       summary: Retrieves a list of Payment Methods for a provided currency
@@ -4058,6 +4282,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -4084,6 +4310,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/paymentMethods/{currencyCode}/{transferCurrency}":
     get:
       summary: Retrieves a list of Payment Methods for a provided currency corridor
@@ -4135,6 +4363,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -4162,6 +4392,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/transfers/{transferId}/approvers":
     get:
       summary: Retrieve a list of Transfer Approvers
@@ -4199,6 +4431,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -4223,6 +4457,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/transfers/{transferId}/notify":
     post:
       summary: Send notifications to Transfer Approvers
@@ -4276,6 +4512,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -4304,6 +4542,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/namedDepositors":
     post:
       summary: Create a Named Depositor
@@ -4341,6 +4581,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "POST"
@@ -4366,6 +4608,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a list of Named Depositors
       description: Retrieves a collection of active Named Depositors for a user.
@@ -4398,6 +4642,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -4423,6 +4669,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/namedDepositors/fields":
     get:
       summary: Retrieve a Named Depositor Fields Collection
@@ -4457,6 +4705,8 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -4480,6 +4730,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          429:
+            statusCode: 429
   "/users/{userId}/namedDepositors/{id}":
     put:
       summary: Update a Named Depositor
@@ -4518,6 +4770,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "PUT"
@@ -4546,6 +4800,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     get:
       summary: Retrieve a Named Depositor
       description: Retrieves a Named Depositor entity.
@@ -4581,6 +4837,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "GET"
@@ -4609,6 +4867,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
     delete:
       summary: Delete a Named Depositor
       description: Deletes a Named Depositor entity.
@@ -4637,6 +4897,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '404':
           $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
         httpMethod: "DELETE"
@@ -4663,6 +4925,8 @@ paths:
             statusCode: 403
           404:
             statusCode: 404
+          429:
+            statusCode: 429
   "/users/{userId}/wallet/transactions":
     get:
       summary: Retrieve a list of Wallet Transactions
@@ -4711,8 +4975,12 @@ paths:
               description: Header name will be remapped to `x-amzn-Remapped-WWW-Authenticate`
         '403':
           $ref: "#/components/responses/Forbidden"
+        '409':
+          $ref: "#/components/responses/RequestConflictWithCurrentState"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -4745,8 +5013,12 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          409:
+            statusCode: 409
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/wallet/transactions/{transactionId}":
     get:
       summary: Retrieve a Wallet Transaction
@@ -4795,6 +5067,8 @@ paths:
           $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -4826,6 +5100,8 @@ paths:
             statusCode: 404
           422:
             statusCode: 422
+          429:
+            statusCode: 429
   "/users/{userId}/wallet/transactions/export":
     get:
       summary: Export a list of Wallet Transactions
@@ -4873,6 +5149,8 @@ paths:
           $ref: "#/components/responses/Forbidden"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
       x-amazon-apigateway-integration:
         x-amazon-apigateway-auth: NONE
@@ -4908,6 +5186,8 @@ paths:
             statusCode: 403
           422:
             statusCode: 422
+          429:
+            statusCode: 429
 components:
   parameters:
     AccountIdParam:
@@ -5155,6 +5435,18 @@ components:
         application/problem+json:
           schema:
             $ref: "#/components/schemas/ApiForbiddenError"
+    RequestConflictWithCurrentState:
+      description: Indicates a request conflict with the current state of the target resource.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ApiConflictError"
+    TooManyRequests:
+      description: Too many requests.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ApiTooManyRequestsError"
   requestBodies:
     SimplestObject:
       content:
@@ -5353,6 +5645,33 @@ components:
           type: string
           description: Description of the error.
           example: You need to pass MFA to access this endpoint
+        variables:
+          type: object
+          description: Optional object containing replacement values for errors with variables.
+          additionalProperties: true
+      required:
+        - type
+        - title
+        - status
+        - detail
+    ApiConflictError:
+      type: object
+      description: The [RFC 7807](https://tools.ietf.org/html/rfc7807) error message.
+      properties:
+        type:
+          type: string
+          example: "http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html"
+        title:
+          type: string
+          example: Forbidden
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 409
+        detail:
+          type: string
+          description: Description of the error.
+          example: Invalid Page provided
         variables:
           type: object
           description: Optional object containing replacement values for errors with variables.
