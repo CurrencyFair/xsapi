@@ -1127,7 +1127,7 @@ paths:
               $ref: "#/components/schemas/QuickTradeOrdersBodyPayload"
         required: true
       responses:
-        '200':
+        '201':
           description: QuickTradeOrders object
           content:
             application/hal+json:
@@ -1162,8 +1162,8 @@ paths:
           integration.request.header.X-Forwarded-For: "context.identity.sourceIp"
           integration.request.header.User-Agent: "context.identity.userAgent"
         responses:
-          200:
-            statusCode: 200
+          201:
+            statusCode: 201
           401:
             statusCode: 401
             responseParameters:
@@ -3570,6 +3570,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
         '429':
           $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-request-validator: params-only
@@ -3597,6 +3599,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          422:
+            statusCode: 422
           429:
             statusCode: 429
   "/automaticQuickTradesStatuses":
@@ -3712,6 +3716,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '422':
+          $ref: "#/components/responses/UnprocessableEntity"
         '429':
           $ref: "#/components/responses/TooManyRequests"
       x-amazon-apigateway-integration:
@@ -3737,6 +3743,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          422:
+            statusCode: 422
           429:
             statusCode: 429
   "/users/{userId}/automaticQuickTrades/{id}":
@@ -4917,6 +4925,8 @@ paths:
         responses:
           200:
             statusCode: 200
+          204:
+            statusCode: 204
           401:
             statusCode: 401
             responseParameters:
