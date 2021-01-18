@@ -3716,6 +3716,8 @@ paths:
                 type: string
         '403':
           $ref: "#/components/responses/Forbidden"
+        '404':
+          $ref: "#/components/responses/NotFound"
         '422':
           $ref: "#/components/responses/UnprocessableEntity"
         '429':
@@ -3743,6 +3745,8 @@ paths:
               method.response.header.WWW-Authenticate: "integration.response.header.WWW-Authenticate"
           403:
             statusCode: 403
+          404:
+            statusCode: 404
           422:
             statusCode: 422
           429:
