@@ -1710,7 +1710,7 @@ paths:
               $ref: "#/components/schemas/MarketplaceOrdersBodyPayload"
         required: true
       responses:
-        '200':
+        '201':
           description: OrdersEntity
           content:
             application/hal+json:
@@ -1745,8 +1745,8 @@ paths:
           integration.request.header.X-Forwarded-For: "context.identity.sourceIp"
           integration.request.header.User-Agent: "context.identity.userAgent"
         responses:
-          200:
-            statusCode: 200
+          201:
+            statusCode: 201
           401:
             statusCode: 401
             responseParameters:
