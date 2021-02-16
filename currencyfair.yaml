@@ -1475,6 +1475,7 @@ paths:
           integration.request.header.User-Agent: "context.identity.userAgent"
           integration.request.path.userId: "method.request.path.userId"
           integration.request.path.orderId: "method.request.path.orderId"
+          integration.request.querystring.amount: "method.request.querystring.amount"
         responses:
           204:
             statusCode: 204
