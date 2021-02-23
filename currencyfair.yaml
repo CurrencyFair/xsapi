@@ -1441,7 +1441,9 @@ paths:
           description: Verification of amount that should be cancelled.
           required: true
           schema:
-            type: string
+            type: number
+            format: float
+            example: "500.00"
       responses:
         '204':
           description: Order successfully cancelled.
