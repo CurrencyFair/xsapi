@@ -1,6 +1,6 @@
 ---
 name: "\U0001F4A1 API Design Proposal"
-about: Describe this issue template's purpose here.
+about: Propose an enhancement or change to existing OpenAPI design
 title: "[ENDPOINT] Proposed design change for <endpoint name here> "
 labels: ''
 assignees: ''
