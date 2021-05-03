@@ -5536,6 +5536,18 @@ components:
         * `Cancelled: 3`
         * `Pending: 6`
         * `Returned: 10`
+    TransfersDetailsStatusEnum:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+      description: |-
+        Possible values:
+        * `In progress: 1`
+        * `On hold:2`
+        * `Sent: 3` 
+      nullable: true
     PaginationDetails:
       type: object
       properties:
@@ -6441,6 +6453,15 @@ components:
       required:
         - status
         - message
+    TransfersDetailsStatusObject:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/TransfersDetailsStatusEnum"
+        message:
+          type: string
+          description: Status text
+          nullable: true
     SimpleStatusObject:
       type: object
       properties:
@@ -8575,6 +8596,8 @@ components:
           example: Sending money to my friend
         estimatedArrivalDate:
           $ref: "#/components/schemas/EstimatedArrivalDateObject"
+        detailsStatusInfo:
+          $ref: "#/components/schemas/TransfersDetailsStatusObject"
         _embedded:
           $ref: "#/components/schemas/TransfersEntityEmbedded"
     TransfersCollection:
