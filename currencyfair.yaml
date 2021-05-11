@@ -6460,7 +6460,11 @@ components:
           $ref: "#/components/schemas/TransfersDetailsStatusEnum"
         message:
           type: string
-          description: Status text
+          description: |-
+            Status text with translation :
+              * `In progress` / `In Bearbeitung` / `En cours` 
+              * `On hold` / `Angehalten` / `En attente`
+              * `Sent` / `Gesendet` / `Envoyé`
           nullable: true
     SimpleStatusObject:
       type: object
