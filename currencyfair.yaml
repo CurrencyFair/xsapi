@@ -7,7 +7,7 @@ info:
     name: Customer Support
     email: support@currencyfair.com
   x-logo:
-    url: https://www.currencyfair.com/cf-content/themes/cfwp-2018/build/assets/svg/logos/logo-currencyfair.svg
+    url: https://assets.currencyfair.com/img/logo-currencyfair.svg
   description: |
     # Introduction
 
@@ -212,7 +212,7 @@ tags:
       These endpoints provide generic, user-specific information.
   - name: Introduction to money operations
     description: |
-      ![](https://currencyfair.com/cf-content/uploads/2020/12/currencyfair-infographic.png)
+      ![](https://assets.currencyfair.com/img/currencyfair-infographic.png)
 
       There are 3 basic operations in our system:
         - `Deposit` - In our UI, this is called "Top Up", "Transfer In" or "Request payment" which are all variants of depositing in money into your CurrencyFair wallet.
